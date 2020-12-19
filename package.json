@@ -1,0 +1,15 @@
+{
+    "name": "multiteamlauncher",
+    "devDependencies": {
+        "@types/node": "^14.14.14",
+        "typescript": "3.4.3",
+        "electron": "^11.1.0"
+    },
+    "dependencies": {
+        "firebase": "^8.2.1"
+    },
+    "main": "lib/main.js",
+    "scripts": {
+        "run":"electron ."
+    }
+}
