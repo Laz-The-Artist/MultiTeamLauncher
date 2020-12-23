@@ -41,6 +41,7 @@ getElement("header-settings").onclick = () => {
 loadTab(currentTab)
 
 function loadGameTab() {
+    createGameContent()
     var testGameInfo = {
         name: "JASG",
         version: {
@@ -50,7 +51,7 @@ function loadGameTab() {
         iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
         previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
         descriptionTitle: "Description",
-        description: "JASG is a game",
+        description: "JASG is a game<br><br><br><br><br><br><br><br><br><br><br><br><br><br>test<br><br><br><br><br><br><br>testttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
         downloadURL: "",
         color: "#140C1F"
     }
@@ -84,8 +85,69 @@ function loadGameTab() {
         getElement("game-description-title").innerHTML = testGameInfo.descriptionTitle
         getElement("game-description").innerHTML = testGameInfo.description
     }
+
+    function createGameContent() {
+        // <img src="" alt="game-icon" id="game-icon">
+        var iconImg = document.createElement("img")
+        iconImg.setAttribute("src", "")
+        iconImg.setAttribute("alt", "game-icon")
+        iconImg.setAttribute("id", "game-icon")
+    
+        // <h1 id="game-title"></h1>
+        var nameH1 = document.createElement("h1")
+        nameH1.innerHTML = ""
+        nameH1.setAttribute("id", "game-title")
+    
+        // <h2 id="game-version"></h2>
+        var versionH2 = document.createElement("h2")
+        versionH2.innerHTML = ""
+        versionH2.setAttribute("id", "game-version")
+    
+        // <input type="submit" value="Play/Update" id="play-update" class="button_regular">
+        var button = document.createElement("input")
+        button.setAttribute("type", "submit")
+        button.setAttribute("value", "Play/Update")
+        button.setAttribute("id", "play-update")
+        button.setAttribute("class", "button_regular")
+    
+        // <div id="game-preview" style="backgroud-image: ">
+        // ...
+        // </div>
+        var gamePreviewDiv = document.createElement("div")
+        gamePreviewDiv.style.backgroundImage = ""
+        gamePreviewDiv.setAttribute("id", "game-preview")
+    
+        gamePreviewDiv.appendChild(iconImg)
+        gamePreviewDiv.appendChild(nameH1)
+        gamePreviewDiv.appendChild(versionH2)
+        gamePreviewDiv.appendChild(button)
+    
+    
+        getElement("tab-content").appendChild(gamePreviewDiv)
+    
+        // <h1 id="game-description-title"></h1>
+        var descTitle = document.createElement("h1")
+        descTitle.innerHTML = ""
+        descTitle.setAttribute("id", "game-description-title")
+    
+        // <h4 id="game-description"></h4>
+        var desc = document.createElement("h4")
+        desc.innerHTML = ""
+        desc.setAttribute("id", "game-description")
+    
+        // <div>
+        // ...
+        // </div>
+        var descDiv = document.createElement("div")
+    
+        descDiv.appendChild(descTitle)
+        descDiv.appendChild(desc)
+    
+        getElement("tab-content").appendChild(descDiv)
+    }
 }
 
 function loadTab(tab: TAB) {
+    getElement("tab-content").innerHTML = null
     if (tab == TAB.GAMES) loadGameTab()
 }
