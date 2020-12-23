@@ -42,48 +42,183 @@ loadTab(currentTab)
 
 function loadGameTab() {
     createGameContent()
-    var testGameInfo = {
-        name: "JASG",
-        version: {
-            name: "WorldGenTest",
-            versionNumber: "0.0.0"
+    var testGameInfo = [
+        {
+            name: "JASG1",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
         },
-        iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-        previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-        descriptionTitle: "Description",
-        description: "JASG is a game<br><br><br><br><br><br><br><br><br><br><br><br><br><br>test<br><br><br><br><br><br><br>testttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
-        downloadURL: "",
-        color: "#140C1F"
-    }
+        {
+            name: "JASG2",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG3",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG4",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG5",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG6",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG7",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG8",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG9",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG10",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        },
+        {
+            name: "JASG11",
+            version: {
+                name: "WorldGenTest",
+                versionNumber: "0.0.0"
+            },
+            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            descriptionTitle: "Description",
+            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            downloadURL: "",
+            color: "#140C1F"
+        }
+    ]
 
     while (getElement("game-list").hasChildNodes()) {
         getElement("game-list").removeChild(getElement("game-list").childNodes[0])
     }
 
-    var gameIcon = document.createElement("img")
-    gameIcon.setAttribute("src", testGameInfo.iconURL)
-    gameIcon.setAttribute("class", "sidebar_item_icon")
-    gameIcon.setAttribute("alt", "sidebar_item_icon")
+    for (const i in testGameInfo) {
+        var gameIcon = document.createElement("img")
+        gameIcon.setAttribute("src", testGameInfo[i].iconURL)
+        gameIcon.setAttribute("class", "sidebar_item_icon")
+        gameIcon.setAttribute("alt", "sidebar_item_icon")
 
-    var gameDiv = document.createElement("div")
-    gameDiv.setAttribute("class", "sidebar_item")
-    gameDiv.style.backgroundColor = testGameInfo.color
-    gameDiv.appendChild(gameIcon)
-    gameDiv.onclick = () => {
-        selectGame(testGameInfo.name)
+        var gameDiv = document.createElement("div")
+        gameDiv.setAttribute("class", "sidebar_item")
+        gameDiv.style.backgroundColor = testGameInfo[i].color
+        gameDiv.appendChild(gameIcon)
+        gameDiv.onclick = () => {
+            selectGame(Number.parseInt(i))
+        }
+
+        getElement("game-list").appendChild(gameDiv)
     }
+    console.log(getElement("game-list").children)
 
-    getElement("game-list").appendChild(gameDiv)
+    selectGame(0)
 
-    selectGame(testGameInfo.name)
-
-    function selectGame(name: string) {
-        getElement("game-preview").style.backgroundImage = "url(" + testGameInfo.previewURL + ")"
-        getElement("game-icon").setAttribute("src", testGameInfo.iconURL)
-        getElement("game-title").innerHTML = testGameInfo.name
-        getElement("game-version").innerHTML = testGameInfo.version.name
-        getElement("game-description-title").innerHTML = testGameInfo.descriptionTitle
-        getElement("game-description").innerHTML = testGameInfo.description
+    function selectGame(id: number) {
+        getElement("game-preview").style.backgroundImage = "url(" + testGameInfo[id].previewURL + ")"
+        getElement("game-icon").setAttribute("src", testGameInfo[id].iconURL)
+        getElement("game-title").innerHTML = testGameInfo[id].name
+        getElement("game-version").innerHTML = testGameInfo[id].version.name
+        getElement("game-description-title").innerHTML = testGameInfo[id].descriptionTitle
+        getElement("game-description").innerHTML = testGameInfo[id].description
     }
 
     function createGameContent() {

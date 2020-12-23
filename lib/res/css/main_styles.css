@@ -6,32 +6,7 @@ body {
     margin: 0px;
 }
 
-::-webkit-scrollbar {
-    width: 12px;
-}
-
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: rgba(255,0,0,0.8); 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
-::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(255,0,0,0.4); 
-}
-
-.loginWrapper{
-    margin: auto;
-    width: fit-content;
-}
-
+/* GLOBAL */
 .inputfield{
     margin-top: 30px;
     -webkit-appearance: none;
@@ -63,6 +38,33 @@ body {
     box-shadow: 0px 0px 10px #ffffff;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-background-color: #141414;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: #E1E1E1; 
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #E1E1E1; 
+}
+
+/* LOGIN */
+
+.loginWrapper{
+    margin: auto;
+    width: fit-content;
+}
+
   /* SIDEBAR */
 
 .sidebar{
@@ -83,8 +85,8 @@ body {
     padding-bottom: 99px;
     padding-left: 12px;
 
-    border-bottom-right-radius: 22px;
-    border-top-right-radius: 22px;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
     background-color: #262626;
 
     overflow-y: auto;
@@ -123,12 +125,12 @@ body {
     margin-right: 0px;
     margin-left: 144px;
     margin-top: 0px;
-    height: 600px;
+    height: 610px;
     width: 1140px;
-
+    background-color: #262626;
     overflow-y: auto;
     overflow-x: hidden;
-    word-break: break-all;
+    word-break: keep-all;
 }
 
 #game-icon{
