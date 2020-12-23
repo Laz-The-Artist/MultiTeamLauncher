@@ -10,6 +10,6 @@
     },
     "main": "lib/main.js",
     "scripts": {
-        "run":"electron ."
+        "run": "tsc && electron ."
     }
 }
