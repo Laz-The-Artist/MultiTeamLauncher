@@ -1,14 +1,18 @@
 body {
     background-color: #141414;
+    color:#E1E1E1;
     font-family: 'Segoe UI';
+    padding: 0px;
+    margin: 0px;
 }
 
 .loginWrapper{
-
+    margin: auto;
+    width: fit-content;
 }
 
 .inputfield{
-    margin-top: 36px;
+    margin-top: 30px;
     -webkit-appearance: none;
     max-height: 35px;
     background-color: #E1E1E1;
@@ -21,6 +25,7 @@ body {
 }
 
 .button_regular{
+    margin-top: 36px;
     -webkit-appearance: none;
     height: 59px;
     width: 213px;
@@ -30,9 +35,112 @@ body {
     text-align: center;
     align-content: center;
     border: 0px solid rgba(0, 0, 0, 0);
-	border-radius: 3px;
+    border-radius: 3px;
 }
 
 .button_regular:hover{
     box-shadow: 0px 0px 10px #ffffff;
+}
+
+  /* SIDEBAR */
+
+.sidebar{
+    float: left;
+    top:0px;
+    left:0px;
+
+    height: 720px;
+    width: 124px;
+    max-width: 123px;
+    
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 31px;
+
+    padding-top: 49px;
+    padding-bottom: 99px;
+    padding-left: 12px;
+
+    border-bottom-right-radius: 22px;
+    border-top-right-radius: 22px;
+    background-color: #262626;
+}
+
+.sidebar_item{
+    width: 100px;
+    height: 100px;
+    background-color: #E1E1E1;
+    color: #141414;
+    text-align: center;
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 0px;
+    margin-left: 0px;
+
+    padding: 0px;
+    
+    white-space: nowrap;
+}
+
+.sidebar_item_icon{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    max-width: 80px;
+    max-height: 80px;
+    vertical-align: middle;
+}
+
+  /* CONTENT */
+#game-icon{
+    width: 150px;
+    max-width: 150px;
+    height: 150px;
+    max-height: 150px;
+    margin: 0px;
+}
+
+
+  /* HEADER */
+.decor_line{
+    border: 5px solid #E1E1E1;
+    border-radius: 10px;
+    margin-top: 0px;
+}
+
+.header_tab{
+    background-color: #141414;
+    color: #E1E1E1;
+    display: inline-block;
+    font-size: 24pt;
+    padding:2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 15px;
+    margin-bottom: 0px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.header_tab_selected{
+    background-color: #E1E1E1;
+    color: #141414;
+    display: inline-block;
+    font-size: 24pt;
+    padding:2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 15px;
+    margin-bottom: 0px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.HeadSpacer{
+    display: inline-block;
+    width:30px;
+    background-color: #141414;
 }
