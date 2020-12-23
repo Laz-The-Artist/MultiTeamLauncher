@@ -7,12 +7,7 @@
         "baseUrl": ".",
         "paths": {
             "*": ["node_modules/*"]        
-        },
-        "target": "ES2015",
-        "lib": [
-            "ES2015",
-            "DOM"
-        ]
+        }
     },
     "include": [
         "src/**/*"

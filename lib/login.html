@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="res/css/main_styles.css" rel="stylesheet">
+    <title>MultiTeam Launcher - Login</title>
+</head>
+<body>
+
+    <div class="loginWrapper">
+        <input type="text" id="username" name="username/email" class="inputfield" placeholder="USERNAME/EMAIL" style="width:292px;"><br>
+        <input type="text" id="password" name="password" class="inputfield" placeholder="PASSWORD" style="width:292px;"><br>
+        <input type="submit" value="CONNECT" id="connect" class="button_regular" onsubmit="onClickButton"><br>
+    </div>
+
+    <script>
+        require("./renderer/login.js")
+    </script>
+</body>
+</html>

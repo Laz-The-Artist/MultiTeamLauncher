@@ -1,0 +1,38 @@
+body {
+    background-color: #141414;
+    font-family: 'Segoe UI';
+}
+
+.loginWrapper{
+
+}
+
+.inputfield{
+    margin-top: 36px;
+    -webkit-appearance: none;
+    max-height: 35px;
+    background-color: #E1E1E1;
+    font-family: 'Segoe UI Semibold';
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+    border: 0px solid rgba(0, 0, 0, 0);
+	border-radius: 3px;
+}
+
+.button_regular{
+    -webkit-appearance: none;
+    height: 59px;
+    width: 213px;
+    background-color: #E1E1E1;
+    font-family: 'Segoe UI Semibold';
+    font-size: 25px;
+    text-align: center;
+    align-content: center;
+    border: 0px solid rgba(0, 0, 0, 0);
+	border-radius: 3px;
+}
+
+.button_regular:hover{
+    box-shadow: 0px 0px 10px #ffffff;
+}
