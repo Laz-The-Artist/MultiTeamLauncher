@@ -44,15 +44,15 @@ function loadGameTab() {
     createGameContent()
     var testGameInfo = [
         {
-            name: "JASG1",
+            name: "JASG",
             version: {
                 name: "WorldGenTest",
                 versionNumber: "0.0.0"
             },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
+            iconURL: "../res/img/game_icon_jasg.png",
             previewURL: "https://www.americasfinestlabels.com/images/CCS400PL.jpg",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            descriptionTitle: "Just a survival game",
+            description: "JASG is a fantasy 8-bit Survival game, within a topdown-perspective world.<br><br>This amazing new experience comes with a lot of exploration, advancing through this mysterious world, achieving magic, defeating bosses, crafting equipment and many more! Have i mentioned that its like 70% procedural?",
             downloadURL: "",
             color: "#140C1F"
         },

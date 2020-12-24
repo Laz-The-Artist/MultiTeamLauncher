@@ -1,8 +1,7 @@
 import {app, BrowserWindow, ipcMain} from 'electron'
 
 import * as path from 'path'
-
-import firebase from 'firebase'
+import { FirebaseHandler } from './firebase';
 
 var firebaseConfig = {
   apiKey: "AIzaSyCec2A2RTYHx3iCU7VwzJxSgoW51VrTk9A",
@@ -16,7 +15,7 @@ var firebaseConfig = {
 
 
 function createWindow() {
-  firebase.initializeApp(firebaseConfig);
+  const firebaseClient = new FirebaseHandler(firebaseConfig)
 
 
     // Create the browser window.
