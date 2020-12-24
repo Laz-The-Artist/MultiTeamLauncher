@@ -204,6 +204,7 @@ body {
 }
 
 .sidebar_item_icon{
+    z-index:8;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -211,6 +212,43 @@ body {
     max-width: 70px;
     max-height: 70px;
     vertical-align: middle;
+}
+
+.sidebar_item_na{
+    width: 80px;
+    height: 80px;
+    background-color: #7E7E7E;
+    color: #141414;
+    text-align: center;
+    display: block;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    margin-right: 0px;
+    margin-left: 0px;
+    border-radius: 3px;
+    padding: 5px;
+    white-space: nowrap;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.38);
+	transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
+}
+.sidebar_item_icon_na{
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    max-width: 70px;
+    max-height: 70px;
+    vertical-align: middle;
+}
+#sidebar_item_badge{
+    z-index:10;
+    float: right;
+    font-size:30px;
+    margin-top: -15px;
+    margin-right: -10px;
 }
 
   /* CONTENT */
@@ -274,6 +312,8 @@ body {
     border-radius: 3px;
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.48);
 }
+
+#
 
   /* HEADER */
 .decor_line{

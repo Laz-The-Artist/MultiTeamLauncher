@@ -5,6 +5,8 @@ export class FirebaseHandler {
     private uid: string = ""
     private database: firebase.database.Database
 
+    private username: string = ""
+
     constructor(config: object) {
         firebase.initializeApp(config)
         this.auth = firebase.auth()
@@ -16,7 +18,10 @@ export class FirebaseHandler {
         
         prom.then((cred: firebase.auth.UserCredential) => {
             this.setUid(cred.user.uid)
-            this.setUserInfo(this.uid, "username", username)
+            this.setUserInfo("username", username)
+            this.setUserInfo("friends", [])
+
+            this.connect()
         })
 
         return prom
@@ -27,6 +32,8 @@ export class FirebaseHandler {
         
         prom.then((cred: firebase.auth.UserCredential) => {
             this.setUid(cred.user.uid)
+
+            this.connect()
         })
 
         return prom
@@ -34,14 +41,24 @@ export class FirebaseHandler {
 
     private setUid(uid: string) {
         this.uid = uid
-        this.setUserInfo(uid, "uid", uid)
+        this.setUserInfo("uid", uid)
     }
 
-    private setUserInfo(uid: string, key: string, value: any) {
-        this.database.ref("users/" + uid).child(key).set(value)
+    private setUserInfo(key: string, value: any) {
+        this.database.ref("users/" + this.uid).child(key).set(value)
     }
 
-    private getUserInfo(uid: string, key: string) {
-        return this.database.ref("users/" + uid).child(key).get()
+    private getUserInfo(key: string) {
+        return this.database.ref("users/" + this.uid).child(key).get()
+    }
+
+    private connect() {
+        this.setUserInfo("status", "online")
+
+        this.getUserInfo("username").then((val) => {
+            this.username = val.val()
+        }, (reason) => {
+            console.error(reason)
+        })
     }
 }

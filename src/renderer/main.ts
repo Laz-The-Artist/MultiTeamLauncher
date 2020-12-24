@@ -80,13 +80,20 @@ function loadGameTab() {
             descriptionTitle: "Description",
             description: "Project Freedom is a 3D game, but its not what you would expect.<br><br>This game will have a play-mode for every type of game, like minecraft, pubg, cs:go, lol, overwatch, and many more new custom or weird play-modes",
             downloadURL: "",
-            color: "#140C1F"
+            color: "#009f00"
         }
     ]
 
     while (getElement("game-list").hasChildNodes()) {
         getElement("game-list").removeChild(getElement("game-list").childNodes[0])
     }
+
+    var badgeDownload = "fas fa-arrow-alt-circle-down"
+    var badgeDownloadColor = "#4CBE6A"
+    var badgeUpdate = "fas fa-arrow-alt-circle-up"
+    var badgeUpdateColor = "#E1E1E1"
+    var badgeError = "fas fa-exclamation-circle"
+    var badgeErrorColor = "#E95F66"
 
     for (const i in testGameInfo) {
         var gameIcon = document.createElement("img")
@@ -95,17 +102,22 @@ function loadGameTab() {
         gameIcon.setAttribute("alt", "sidebar_item_icon")
         gameIcon.setAttribute("draggable", "false")
 
+        var downStatus = document.createElement("i")
+        downStatus.setAttribute("class", badgeDownload)
+        downStatus.setAttribute("id", "sidebar_item_badge")
+        downStatus.style.color = badgeDownloadColor
+
         var gameDiv = document.createElement("div")
         gameDiv.setAttribute("class", "sidebar_item")
         gameDiv.style.backgroundColor = testGameInfo[i].color
         gameDiv.appendChild(gameIcon)
+        gameDiv.appendChild(downStatus)
         gameDiv.onclick = () => {
             selectGame(Number.parseInt(i))
         }
 
         getElement("game-list").appendChild(gameDiv)
     }
-    console.log(getElement("game-list").children)
 
     selectGame(0)
 
@@ -211,7 +223,7 @@ function loadSocialTab() {
 
         var addFriendIcon = document.createElement("i")
         addFriendIcon.setAttribute("id", "ico-addFriend")
-        addFriendIcon.setAttribute("class", "fas fa-paper-plane")
+        addFriendIcon.setAttribute("class", "fas fa-plus-circle")
 
         var addFriendButton = document.createElement("div")
         addFriendButton.setAttribute("class", "button_icon")
