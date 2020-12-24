@@ -10,6 +10,7 @@ var firebaseConfig = {
   storageBucket: "multiteam-base.appspot.com",
   messagingSenderId: "254163081307",
   appId: "1:254163081307:web:f49ae701be060a9395877e",
+  databaseURL: "https://multiteam-base-default-rtdb.europe-west1.firebasedatabase.app",
   measurementId: "G-9LPRKBL456"
 };
 
@@ -37,12 +38,29 @@ function createWindow() {
     mainWindow.webContents.openDevTools();
 
     ipcMain.on('login', (even, data) => {
-      mainWindow.loadFile(path.join(__dirname, "./main.html"))
-      // firebase.auth()
-      // .createUserWithEmailAndPassword(data.username, data.password)
-      // .then((val) => {
-      //   console.log(val)
-      // })
+      if (data["operation"] == 1) {
+        firebaseClient.createAccount(data["username"], data["email"], data["password"])
+          .then((val) => {
+            mainWindow.loadFile(path.join(__dirname, "./main.html"))
+          })
+          .catch((err) => {
+            ipcMain.emit("login-error", {
+              operation: data["operation"],
+              error: err
+            })
+          })
+      } else {
+        firebaseClient.login(data["email"], data["password"])
+          .then((val) => {
+            mainWindow.loadFile(path.join(__dirname, "./main.html"))
+          })
+          .catch((err) => {
+            ipcMain.emit("login-error", {
+              operation: data["operation"],
+              error: err
+            })
+          })
+      }
     })
 }
   

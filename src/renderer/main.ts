@@ -49,7 +49,7 @@ function loadGameTab() {
                 name: "WorldGenTest",
                 versionNumber: "0.0.0"
             },
-            iconURL: "../res/img/game_icon_jasg.png",
+            iconURL: "./res/img/game_icon_jasg.png",
             previewURL: "https://www.americasfinestlabels.com/images/CCS400PL.jpg",
             descriptionTitle: "Just a survival game",
             description: "JASG is a fantasy 8-bit Survival game, within a topdown-perspective world.<br><br>This amazing new experience comes with a lot of exploration, advancing through this mysterious world, achieving magic, defeating bosses, crafting equipment and many more! Have i mentioned that its like 70% procedural?",
@@ -57,132 +57,28 @@ function loadGameTab() {
             color: "#140C1F"
         },
         {
-            name: "JASG2",
+            name: "Soldiers of The Office",
             version: {
-                name: "WorldGenTest",
+                name: "N/A",
                 versionNumber: "0.0.0"
             },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            iconURL: "./res/img/game_icon_soto.png",
+            previewURL: "https://www.americasfinestlabels.com/images/CCS400PL.jpg",
             descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            description: "Soldiers of the office is a story based, 2D platformer-shooter, all about the weird war of humans against an infection that spreads with ultra-modern technology.",
             downloadURL: "",
-            color: "#140C1F"
+            color: "#242735"
         },
         {
-            name: "JASG3",
+            name: "Project Freedom",
             version: {
-                name: "WorldGenTest",
+                name: "N/A",
                 versionNumber: "0.0.0"
             },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            iconURL: "./res/img/game_icon_pf.png",
+            previewURL: "https://www.americasfinestlabels.com/images/CCS400PL.jpg",
             descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG4",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG5",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG6",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG7",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG8",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG9",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG10",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "JASG11",
-            version: {
-                name: "WorldGenTest",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
-            descriptionTitle: "Description",
-            description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
+            description: "Project Freedom is a 3D game, but its not what you would expect.<br><br>This game will have a play-mode for every type of game, like minecraft, pubg, cs:go, lol, overwatch, and many more new custom or weird play-modes",
             downloadURL: "",
             color: "#140C1F"
         }
@@ -215,7 +111,8 @@ function loadGameTab() {
 
     function selectGame(id: number) {
         getElement("game-preview").style.backgroundImage = "url(" + testGameInfo[id].previewURL + ")"
-        getElement("game-icon").setAttribute("src", testGameInfo[id].iconURL)
+        getElement("game-icon-img").setAttribute("src", testGameInfo[id].iconURL)
+        getElement("game-icon").style.backgroundColor = testGameInfo[id].color
         getElement("game-title").innerHTML = testGameInfo[id].name
         getElement("game-version").innerHTML = testGameInfo[id].version.name
         getElement("game-description-title").innerHTML = testGameInfo[id].descriptionTitle
@@ -223,12 +120,16 @@ function loadGameTab() {
     }
 
     function createGameContent() {
-        // <img src="" alt="game-icon" id="game-icon">
+        // <div><img src="" alt="game-icon" id="game-icon"></div>
         var iconImg = document.createElement("img")
         iconImg.setAttribute("src", "")
         iconImg.setAttribute("alt", "game-icon")
-        iconImg.setAttribute("id", "game-icon")
+        iconImg.setAttribute("id", "game-icon-img")
         iconImg.setAttribute("draggable", "false")
+
+        var iconDiv = document.createElement("div")
+        iconDiv.setAttribute("id", "game-icon")
+        iconDiv.appendChild(iconImg)
     
         // <h1 id="game-title"></h1>
         var nameH1 = document.createElement("h1")
@@ -254,7 +155,7 @@ function loadGameTab() {
         gamePreviewDiv.style.backgroundImage = ""
         gamePreviewDiv.setAttribute("id", "game-preview")
     
-        gamePreviewDiv.appendChild(iconImg)
+        gamePreviewDiv.appendChild(iconDiv)
         gamePreviewDiv.appendChild(nameH1)
         gamePreviewDiv.appendChild(versionH2)
         gamePreviewDiv.appendChild(button)
@@ -316,12 +217,6 @@ function loadSocialTab() {
         addFriendButton.setAttribute("class", "button_icon")
         addFriendButton.setAttribute("id", "add-friend")
         addFriendButton.appendChild(addFriendIcon)
-
-        /*var addFriendButton = document.createElement("input")
-        addFriendButton.setAttribute("type", "submit")
-        addFriendButton.setAttribute("id", "add-friend")
-        addFriendButton.setAttribute("class", "button_icon")
-        addFriendButton.setAttribute("value", "+")*/
 
         getElement("tab-content").appendChild(addFriendButton)
 

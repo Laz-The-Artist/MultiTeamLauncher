@@ -36,10 +36,16 @@ body {
     align-content: center;
     border: 0px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
+	transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
 }
 .button_regular:hover{
     cursor: pointer;
     box-shadow: 0px 0px 10px #ffffff;
+    transform: scale(1.15);
+}
+.button_regular:active{
+    transform: scale(1.0);
 }
 
 .button_icon{
@@ -50,6 +56,9 @@ body {
 }
 .button_icon:hover{
     transform: scale(1.3);
+}
+.button_icon:active{
+    transform: scale(0.8);
 }
 
 ::-webkit-scrollbar {
@@ -91,6 +100,57 @@ body {
     padding: 20px;
 }
 
+#sign-up-text{
+    text-shadow: 0px 0px 10px #ffffff;
+    cursor: pointer;
+	transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.5s;
+    animation: pulsate 2s infinite;
+}
+
+#login-text{
+    text-shadow: 0px 0px 10px #ffffff;
+    cursor: pointer;
+	transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.5s;
+    animation: pulsate 2s infinite;
+}
+@keyframes pulsate{
+    0% {text-shadow: none;}
+    50% {text-shadow: 0px 0px 10px #ffffff;}
+    100% {text-shadow: none;}
+}
+
+#sign-up-text:hover{
+    color: #7F91E9;
+    text-shadow: 0px 0px 10px #7F91E9;
+    cursor: pointer;
+    transform: scale(1.15);
+    animation: none;
+}
+
+#sign-up-text:active{
+    color: #7F91E9;
+    cursor: pointer;
+	transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
+    transform: scale(0.8);
+}
+
+#login-text:hover{
+    color: #7F91E9;
+    text-shadow: 0px 0px 10px #7F91E9;
+    cursor: pointer;
+    transform: scale(1.15);
+}
+
+#login-text:active{
+    color: #7F91E9;
+    cursor: pointer;
+	transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
+    transform: scale(0.8);
+}
 
   /* SIDEBAR */
 
@@ -165,8 +225,17 @@ body {
     overflow-x: hidden;
     word-break: keep-all;
 }
-
+#game-icon-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    max-width: 120px;
+    max-height: 120px;
+    vertical-align: middle;
+}
 #game-icon{
+    display: inline-block;
     width: 150px;
     max-width: 150px;
     height: 150px;
@@ -176,6 +245,7 @@ body {
     margin-left:30px;
     margin-top: 30px;
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.48);
+    padding: 0px;
 }
 #game-title{
     margin-left:30px;

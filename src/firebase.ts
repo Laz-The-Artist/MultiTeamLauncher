@@ -11,21 +11,37 @@ export class FirebaseHandler {
         this.database = firebase.database()
     }
 
-    createAccount(email: string, password: string) {
-        this.auth.createUserWithEmailAndPassword(email, password)
-            .then((cred: firebase.auth.UserCredential) => {
-                this.uid = cred.user.uid
-            }, (reason) => {
-                console.error(reason)
-            })
+    createAccount(username: string, email: string, password: string) {
+        var prom = this.auth.createUserWithEmailAndPassword(email, password)
+        
+        prom.then((cred: firebase.auth.UserCredential) => {
+            this.setUid(cred.user.uid)
+            this.setUserInfo(this.uid, "username", username)
+        })
+
+        return prom
     }
 
     login(email: string, password: string) {
-        this.auth.signInWithEmailAndPassword(email, password)
-            .then((cred: firebase.auth.UserCredential) => {
-                this.uid = cred.user.uid
-            }, (reason) => {
-                console.error(reason)
-            })
+        var prom = this.auth.signInWithEmailAndPassword(email, password)
+        
+        prom.then((cred: firebase.auth.UserCredential) => {
+            this.setUid(cred.user.uid)
+        })
+
+        return prom
+    }
+
+    private setUid(uid: string) {
+        this.uid = uid
+        this.setUserInfo(uid, "uid", uid)
+    }
+
+    private setUserInfo(uid: string, key: string, value: any) {
+        this.database.ref("users/" + uid).child(key).set(value)
+    }
+
+    private getUserInfo(uid: string, key: string) {
+        return this.database.ref("users/" + uid).child(key).get()
     }
 }

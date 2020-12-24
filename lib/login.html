@@ -13,11 +13,11 @@
     <div class="loginWrapper" id="window-login" style="display:block;">
         <br>MULTITEAM LAUNCHER
         <hr class="decor_line" style="width:590px;"><br>
-        <a style="font-size: 44pt;">Login</a>
+        <a style="font-size: 44pt; text-decoration: underline;">Login</a> <a style="font-size: 44pt; margin-left:15px;"> or </a> <a style="font-size: 44pt;" id="sign-up-text">Sign Up</a>
         <br>
-        <input type="text" id="username" name="username/email" class="inputfield" placeholder="USERNAME/EMAIL" style="width:292px;"><br>
-        <input type="password" id="password" name="password" class="inputfield" placeholder="PASSWORD" style="width:292px;"><br>
-        <input type="submit" value="CONNECT" id="connect" class="button_regular" onsubmit="onClickButton" style="display: block; margin-left: auto; margin-right: auto;"><br>
+        <input type="text" id="email0" name="email" class="inputfield" placeholder="EMAIL" style="width:292px;"><br>
+        <input type="password" id="password0" name="password" class="inputfield" placeholder="PASSWORD" style="width:292px;"><br>
+        <input type="submit" value="Log-In" id="connect0" class="button_regular" style="display: block; margin-left: auto; margin-right: auto;"><br>
 
         <div class="msg-login-error" style="display:none;" >
             <h1>ERROR</h1>
@@ -28,15 +28,20 @@
     <div class="loginWrapper" id="window-signup" style="display:none;">
         <br>MULTITEAM LAUNCHER
         <hr class="decor_line" style="width:590px;"><br>
-        <a style="font-size: 44pt;">Login</a>
+        <a style="font-size: 44pt;" id="login-text">Login</a> <a style="font-size: 44pt; margin-left:15px;"> or </a> <a style="font-size: 44pt; text-decoration: underline;">Sign Up</a>
         <br>
-        <input type="text" id="username" name="username/email" class="inputfield" placeholder="USERNAME/EMAIL" style="width:292px;"><br>
-        <input type="password" id="password" name="password" class="inputfield" placeholder="PASSWORD" style="width:292px;"><br>
-        <input type="submit" value="CONNECT" id="connect" class="button_regular" onsubmit="onClickButton" style="display: block; margin-left: auto; margin-right: auto;"><br>
+        <input type="text" id="username1" name="username" class="inputfield" placeholder="USERNAME" style="width:292px;"><br>
+        <input type="text" id="email1" name="email" class="inputfield" placeholder="EMAIL" style="width:292px;"><br>
+        <input type="password" id="password1" name="password" class="inputfield" placeholder="PASSWORD" style="width:292px;"><br>
+        <input type="submit" value="Sign-Up" id="connect1" class="button_regular" style="display: block; margin-left: auto; margin-right: auto;"><br>
 
-        <div class="msg-login-error" style="display:none;">
+        <div class="msg-login-error1" style="display:none;">
             <h1>ERROR</h1>
             <h2>Either your email adress or pasword is incorrect!</h2>
+        </div>
+        <div class="msg-login-error2" style="display:none;">
+            <h1>ERROR</h1>
+            <h2>Your email adress is already taken!</h2>
         </div>
     </div>
 
