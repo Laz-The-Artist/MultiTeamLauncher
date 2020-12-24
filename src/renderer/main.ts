@@ -50,7 +50,7 @@ function loadGameTab() {
                 versionNumber: "0.0.0"
             },
             iconURL: "https://upload.wikimedia.org/wikipedia/en/e/ed/Nyan_cat_250px_frame.PNG",
-            previewURL: "https://silasgreen.com/wp-content/uploads/2015/10/Undertale-title-banner.png",
+            previewURL: "https://www.americasfinestlabels.com/images/CCS400PL.jpg",
             descriptionTitle: "Description",
             description: "Lorem ipsum dolor sit amet <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> consectetur adipisicing elit. Facilis dolorum, nesciunt maxime minus impedit aliquid expedita debitis rerum omnis consequuntur voluptates sit maiores officia tempora? Ea magnam rerum reiciendis beatae!",
             downloadURL: "",
@@ -197,6 +197,7 @@ function loadGameTab() {
         gameIcon.setAttribute("src", testGameInfo[i].iconURL)
         gameIcon.setAttribute("class", "sidebar_item_icon")
         gameIcon.setAttribute("alt", "sidebar_item_icon")
+        gameIcon.setAttribute("draggable", "false")
 
         var gameDiv = document.createElement("div")
         gameDiv.setAttribute("class", "sidebar_item")
@@ -227,6 +228,7 @@ function loadGameTab() {
         iconImg.setAttribute("src", "")
         iconImg.setAttribute("alt", "game-icon")
         iconImg.setAttribute("id", "game-icon")
+        iconImg.setAttribute("draggable", "false")
     
         // <h1 id="game-title"></h1>
         var nameH1 = document.createElement("h1")
@@ -282,7 +284,88 @@ function loadGameTab() {
     }
 }
 
+function loadSocialTab() {
+    createSocialContent()
+
+
+
+    function createSocialContent() {
+        var friendTab = document.createElement("div")
+        friendTab.innerHTML = "Friends"
+        friendTab.setAttribute("class", "header_tab_sub")
+        friendTab.setAttribute("id", "friend-tab")
+
+        var groupsTab = document.createElement("div")
+        groupsTab.innerHTML = "Groups"
+        groupsTab.setAttribute("class", "header_tab_sub")
+        groupsTab.setAttribute("id", "groups-tab")
+
+        var subMenuDiv = document.createElement("div")
+        subMenuDiv.setAttribute("class", "header-sub")
+
+        subMenuDiv.appendChild(friendTab)
+        subMenuDiv.appendChild(groupsTab)
+
+        getElement("tab-content").appendChild(subMenuDiv)
+
+        var addFriendIcon = document.createElement("i")
+        addFriendIcon.setAttribute("id", "ico-addFriend")
+        addFriendIcon.setAttribute("class", "fas fa-paper-plane")
+
+        var addFriendButton = document.createElement("div")
+        addFriendButton.setAttribute("class", "button_icon")
+        addFriendButton.setAttribute("id", "add-friend")
+        addFriendButton.appendChild(addFriendIcon)
+
+        /*var addFriendButton = document.createElement("input")
+        addFriendButton.setAttribute("type", "submit")
+        addFriendButton.setAttribute("id", "add-friend")
+        addFriendButton.setAttribute("class", "button_icon")
+        addFriendButton.setAttribute("value", "+")*/
+
+        getElement("tab-content").appendChild(addFriendButton)
+
+        var testFriendImage = document.createElement("img")
+        testFriendImage.setAttribute("src", "../../concept/JasgIcon.png")
+
+        var testFriendName = document.createElement("h1")
+        testFriendName.innerHTML = "Cat Core"
+
+        var testFriendStatus = document.createElement("h4")
+        testFriendStatus.innerHTML = "Online"
+
+        var messageInput = document.createElement("input")
+        messageInput.setAttribute("type", "text")
+
+        var sendIcon = document.createElement("i")
+        sendIcon.setAttribute("id", "ico-send")
+        sendIcon.setAttribute("class", "fas fa-paper-plane")
+
+        var sendButton = document.createElement("div")
+        sendButton.setAttribute("class", "button_icon")
+        sendButton.appendChild(sendIcon)
+
+        var messageBoxDiv = document.createElement("div")
+        messageBoxDiv.appendChild(messageInput)
+        messageBoxDiv.appendChild(sendButton)
+
+        var testFriendDiv = document.createElement("div")
+        testFriendDiv.appendChild(testFriendImage)
+        testFriendDiv.appendChild(testFriendName)
+        testFriendDiv.appendChild(testFriendStatus)
+        testFriendDiv.appendChild(messageBoxDiv)
+
+        var friendListDiv = document.createElement("div")
+        friendListDiv.setAttribute("id", "friend-list")
+
+        friendListDiv.appendChild(testFriendDiv)
+
+        getElement("tab-content").appendChild(friendListDiv)
+    }
+}
+
 function loadTab(tab: TAB) {
     getElement("tab-content").innerHTML = null
     if (tab == TAB.GAMES) loadGameTab()
+    else if (tab == TAB.SOCIAL) loadSocialTab()
 }

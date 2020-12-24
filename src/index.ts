@@ -2,7 +2,23 @@ import {app, BrowserWindow, ipcMain} from 'electron'
 
 import * as path from 'path'
 
+import firebase from 'firebase'
+
+var firebaseConfig = {
+  apiKey: "AIzaSyCec2A2RTYHx3iCU7VwzJxSgoW51VrTk9A",
+  authDomain: "multiteam-base.firebaseapp.com",
+  projectId: "multiteam-base",
+  storageBucket: "multiteam-base.appspot.com",
+  messagingSenderId: "254163081307",
+  appId: "1:254163081307:web:f49ae701be060a9395877e",
+  measurementId: "G-9LPRKBL456"
+};
+
+
 function createWindow() {
+  firebase.initializeApp(firebaseConfig);
+
+
     // Create the browser window.
     const mainWindow = new BrowserWindow({
       height: 720,
@@ -21,9 +37,13 @@ function createWindow() {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
-    ipcMain.on('login', (even) => {
-      console.log("main")
+    ipcMain.on('login', (even, data) => {
       mainWindow.loadFile(path.join(__dirname, "./main.html"))
+      // firebase.auth()
+      // .createUserWithEmailAndPassword(data.username, data.password)
+      // .then((val) => {
+      //   console.log(val)
+      // })
     })
 }
   

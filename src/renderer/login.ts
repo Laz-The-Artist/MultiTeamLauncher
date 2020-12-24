@@ -1,5 +1,9 @@
 import * as electron from 'electron'
 
 document.getElementById("connect").onclick = () => {
-    electron.ipcRenderer.send('login')
+    console.log()
+    electron.ipcRenderer.send('login', {
+        username: (<any>document.getElementById("username")).value,
+        password: (<any>document.getElementById("password")).value
+    })
 }
