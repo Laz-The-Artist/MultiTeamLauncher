@@ -49,7 +49,7 @@ body {
 }
 .button_regular:active{
     transform: scale(1.0);
-    transition-duration: 0.0s;
+    transition-duration: 0.1s;
 }
 
 .button_icon{
@@ -64,6 +64,7 @@ body {
 }
 .button_icon:active{
     transform: scale(0.8);
+    transition-duration: 0.1s;
 }
 
 ::-webkit-scrollbar {
@@ -240,6 +241,10 @@ body {
     cursor: pointer;
     transform: scale(1.15);
 }
+.sidebar_item:active{
+    transform: scale(1.0);
+    transition-duration: 0.1s;
+}
 
 .sidebar_item_icon{
     z-index:8;
@@ -358,6 +363,7 @@ body {
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.48);
 }
 .pfp{
+    cursor: pointer;
     display: inline-block;
     width: 130px;
     height: 130px;
@@ -368,6 +374,11 @@ body {
     border-radius: 3px;
     margin-right: 17px;
     margin-bottom: 0px;
+    transition-duration: 0.2s;
+}
+.pfp:active{
+    transform: scale(0.9);
+    transition-duration: 0.1s;
 }
 .message_box{
     display: inline-block;
