@@ -298,7 +298,7 @@ body {
 .content_games{
     margin-right: 0px;
     margin-left: 144px;
-    margin-top: 10px;
+    margin-top: 0px;
     height: 620px;
     width: 1140px;
     background-color: #262626;
@@ -458,6 +458,10 @@ body {
     margin-bottom:0px;
 }
 
+.header{
+    margin-bottom:0px;
+}
+
 .header_tab{
     cursor: pointer;
     background-color: #141414;
@@ -548,21 +552,44 @@ body {
 
 #account-preview{
     display: inline-block;
+    margin:0px;
+    padding:0px;
 }
 .account_preview_img{
-    width: 23px;
-    height 23px;
+    width: 43px;
+    height: 43px;
     display: inline-block;
+    position: relative;
+    top: 5px;
     background-color: #E1E1E1;
+    margin:0px;
+    padding:0px;
+}
+#account-preview-pfp{
+    max-width: 43px;
+    max-height: 43px;
 }
 #account-preview-username{
+    font-size: 20pt;
     display: inline-block;
     vertical-align: center;
+    margin:0px;
+    padding:0px;
+    position: relative;
+    top: -20px;
 }
 #account-preview-status{
     display: inline-block;
     vertical-align: center;
+    margin:0px;
+    padding:0px;
+    position: relative;
+    left: -320px;
 }
 #account-manage{
     display: inline-block;
+    margin:0px;
+    padding:0px;
+    position: relative;
+    top: -5px;
 }

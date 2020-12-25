@@ -1,16 +1,62 @@
 import {ipcRenderer} from 'electron'
+import { Tab } from './main/main'
+import { SocialSubTab } from './main/social'
 
+export class MainWindow {
+    private tabs: Tab[]
+    private socialTabs: SocialSubTab[]
 
+    private currentTab: Header
+    private currentSocialTab: Header
 
-enum Tab {
-    GAMES,
-    SOCIAL,
-    SETTINGS
+    constructor() {
+        this.tabs = []
+        this.socialTabs = []
+
+        this.setTab(Tab.GAMES)
+
+        
+    }
+
+    setTab(tab: any) {
+        this.getElement("header-" + Tab.GAMES.name).setAttribute("class", "header_tab")
+        this.getElement("header-" + Tab.SETTINGS.name).setAttribute("class", "header_tab")
+        this.getElement("header-" + Tab.SOCIAL.name).setAttribute("class", "header_tab")
+
+        this.getElement("header-" + tab.name).setAttribute("class", "header_tab_selected")
+        this.currentTab = tab
+    }
+
+    getElement(id: string) {
+        return document.getElementById(id)
+    }
 }
 
-enum SocialTab {
-    FRIENDS,
-    GROUPS
+class Header {
+    private name: string
+
+    constructor(name: string) {
+        this.name = name
+    }
+
+    getName() {
+        return this.name
+    }
+}
+
+export const Tabs = [
+    new Header("games"),
+    new Header("social"),
+    new Header("settings")
+]
+
+export const SocialTab = {
+    FRIENDS: {
+        name: "friends"
+    },
+    GROUPS: {
+        name: "groups"
+    }
 }
 
 function getElement(id: string): HTMLElement {
@@ -45,20 +91,6 @@ getElement("header-settings").onclick = () => {
     getElement("header-games").setAttribute("class", "header_tab")
     currentTab = Tab.SETTINGS
     loadTab(currentTab)
-}
-
-getElement("sub-header-friends").onclick = () => {
-    getElement("sub-header-friends").setAttribute("class", "header_tab_sub_selected")
-    getElement("sub-header-groups").setAttribute("class", "header_tab_sub")
-
-    currentSocialTab = SocialTab.FRIENDS
-}
-
-getElement("sub-header-groups").onclick = () => {
-    getElement("sub-header-groups").setAttribute("class", "header_tab_sub_selected")
-    getElement("sub-header-friends").setAttribute("class", "header_tab_sub")
-
-    currentSocialTab = SocialTab.GROUPS
 }
 
 loadTab(currentTab)
@@ -232,6 +264,22 @@ function emptySidebar() {
 }
 
 function loadSocialTab() {
+    getElement("sub-header-friends").onclick = () => {
+        getElement("sub-header-friends").setAttribute("class", "header_tab_sub_selected")
+        getElement("sub-header-groups").setAttribute("class", "header_tab_sub")
+    
+        currentSocialTab = SocialTab.FRIENDS
+        selectSocialTab(currentSocialTab)
+    }
+    
+    getElement("sub-header-groups").onclick = () => {
+        getElement("sub-header-groups").setAttribute("class", "header_tab_sub_selected")
+        getElement("sub-header-friends").setAttribute("class", "header_tab_sub")
+    
+        currentSocialTab = SocialTab.GROUPS
+        selectSocialTab(currentSocialTab)
+    }
+
     emptySidebar()
     getElement("game-list").setAttribute("class", "sidebar_hidden")
     createSocialContent()
@@ -241,11 +289,19 @@ function loadSocialTab() {
 
 
     function createSocialContent() {
-
         getElement("sub-header-friends").style.display = "inline-block"
         getElement("sub-header-groups").style.display = "inline-block"
         getElement("add-friend").style.display = "inline-block"
+        selectSocialTab(currentSocialTab)
+    }
 
+    function selectSocialTab(tab: object) {
+        getElement("tab-content").innerHTML = null
+        if (tab == SocialTab.FRIENDS) loadFriendTab()
+        else loadGroupsTab()
+    }
+
+    function loadFriendTab() {
         var friendListDiv = document.createElement("div")
         friendListDiv.setAttribute("id", "friend-list")
         friendListDiv.setAttribute("class", "friend-list")
@@ -297,10 +353,16 @@ function loadSocialTab() {
 
         getElement("tab-content").appendChild(friendListDiv)
     }
+
+    function loadGroupsTab() {
+
+    }
 }
 
-function loadTab(tab: Tab) {
+function loadTab(tab: object) {
     getElement("tab-content").innerHTML = null
     if (tab == Tab.GAMES) loadGameTab()
     else if (tab == Tab.SOCIAL) loadSocialTab()
 }
+
+export const mainWindow = new MainWindow()
