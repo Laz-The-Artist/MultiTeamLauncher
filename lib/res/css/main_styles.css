@@ -561,7 +561,8 @@ body {
     display: inline-block;
     position: relative;
     top: 5px;
-    background-color: #E1E1E1;
+    background-color: #262626;
+    border: 2px solid #262626;
     margin:0px;
     padding:0px;
 }
@@ -584,7 +585,7 @@ body {
     margin:0px;
     padding:0px;
     position: relative;
-    left: -320px;
+    left: -310px;
 }
 #account-manage{
     display: inline-block;

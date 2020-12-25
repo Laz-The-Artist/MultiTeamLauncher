@@ -1,34 +1,93 @@
 import {ipcRenderer} from 'electron'
+import { GameTab } from './main/games'
 import { Tab } from './main/main'
-import { SocialSubTab } from './main/social'
+import { ModsTab } from './main/mods'
+import { SettingsTab } from './main/settings'
+import { FriendsTab, GroupsTab, SocialSubTab, SocialTab } from './main/social'
 
 export class MainWindow {
     private tabs: Tab[]
     private socialTabs: SocialSubTab[]
 
-    private currentTab: Header
-    private currentSocialTab: Header
+    private currentTab: number
+    private currentSocialTab: number = 0
 
     constructor() {
-        this.tabs = []
-        this.socialTabs = []
+        this.tabs = [new GameTab(this), new ModsTab(this), new SocialTab(this), new SettingsTab(this)]
+        this.socialTabs = [new FriendsTab(this), new GroupsTab(this)]
 
-        this.setTab(Tab.GAMES)
+        this.setTab(0)
 
-        
+        for (let i = 0; i < Tabs.length; i++) {
+            this.getElement("header-" + Tabs[i].getName()).onclick = () => this.setTab(i)
+        }
+
+        for (let i = 0; i < SocialTabs.length; i++) {
+            this.getElement("sub-header-" + SocialTabs[i].getName()).onclick = () => this.setSocialTab(i)
+        }
     }
 
-    setTab(tab: any) {
-        this.getElement("header-" + Tab.GAMES.name).setAttribute("class", "header_tab")
-        this.getElement("header-" + Tab.SETTINGS.name).setAttribute("class", "header_tab")
-        this.getElement("header-" + Tab.SOCIAL.name).setAttribute("class", "header_tab")
+    getCurrentSocialTab() {
+        return this.currentSocialTab
+    }
 
-        this.getElement("header-" + tab.name).setAttribute("class", "header_tab_selected")
-        this.currentTab = tab
+    setTab(tabIndex: number) {
+        for (let i = 0; i < Tabs.length; i++) {
+            this.getElement("header-" + Tabs[i].getName()).setAttribute("class", "header_tab")
+        }
+
+        this.getElement("header-" + Tabs[tabIndex].getName()).setAttribute("class", "header_tab_selected")
+        this.currentTab = tabIndex
+        this.loadTab(tabIndex)
+    }
+
+    setSocialTab(tabIndex: number) {
+        for (let i = 0; i < SocialTabs.length; i++) {
+            this.getElement("sub-header-" + SocialTabs[i].getName()).setAttribute("class", "header_tab_sub")
+        }
+
+        this.getElement("sub-header-" + SocialTabs[tabIndex].getName()).setAttribute("class", "header_tab_sub_selected")
+        this.currentSocialTab = tabIndex
+        this.loadSocialTab(tabIndex)
+    }
+
+    loadSocialTab(index: number) {
+        this.getElement("tab-content").innerHTML = null
+
+        this.socialTabs[index].load()
+    }
+
+    loadTab(index: number) {
+        this.emptySidebar()
+
+        if (index == 2) {
+            this.getElement("game-list").setAttribute("class", "sidebar_hidden")
+        
+            this.getElement("sub-header-friends").style.display = "inline-block"
+            this.getElement("sub-header-groups").style.display = "inline-block"
+            this.getElement("add-friend").style.display = "inline-block"
+        } else {
+            this.getElement("game-list").setAttribute("class", "sidebar")
+        
+            this.getElement("sub-header-friends").style.display = "none"
+            this.getElement("sub-header-groups").style.display = "none"
+            this.getElement("add-friend").style.display = "none"
+        }
+        this.getElement("tab-content").innerHTML = null
+
+        this.tabs[index].init()
+
+        this.tabs[index].load()
     }
 
     getElement(id: string) {
         return document.getElementById(id)
+    }
+
+    emptySidebar() {
+        while (this.getElement("game-list").hasChildNodes()) {
+            this.getElement("game-list").removeChild(this.getElement("game-list").childNodes[0])
+        }
     }
 }
 
@@ -46,323 +105,14 @@ class Header {
 
 export const Tabs = [
     new Header("games"),
+    new Header("mods"),
     new Header("social"),
     new Header("settings")
 ]
 
-export const SocialTab = {
-    FRIENDS: {
-        name: "friends"
-    },
-    GROUPS: {
-        name: "groups"
-    }
-}
-
-function getElement(id: string): HTMLElement {
-    return document.getElementById(id)
-}
-
-let currentTab = Tab.GAMES
-
-let currentSocialTab = SocialTab.FRIENDS
-
-getElement("header-games").setAttribute("class", "header_tab_selected")
-
-getElement("header-games").onclick = () => {
-    getElement("header-games").setAttribute("class", "header_tab_selected")
-    getElement("header-social").setAttribute("class", "header_tab")
-    getElement("header-settings").setAttribute("class", "header_tab")
-    currentTab = Tab.GAMES
-    loadTab(currentTab)
-}
-
-getElement("header-social").onclick = () => {
-    getElement("header-social").setAttribute("class", "header_tab_selected")
-    getElement("header-games").setAttribute("class", "header_tab")
-    getElement("header-settings").setAttribute("class", "header_tab")
-    currentTab = Tab.SOCIAL
-    loadTab(currentTab)
-}
-
-getElement("header-settings").onclick = () => {
-    getElement("header-settings").setAttribute("class", "header_tab_selected")
-    getElement("header-social").setAttribute("class", "header_tab")
-    getElement("header-games").setAttribute("class", "header_tab")
-    currentTab = Tab.SETTINGS
-    loadTab(currentTab)
-}
-
-loadTab(currentTab)
-
-function loadGameTab() {
-    getElement("game-list").setAttribute("class", "sidebar")
-    getElement("tab-content").setAttribute("class", "content_games")
-    createGameContent()
-    var testGameInfo = [
-        {
-            name: "JASG",
-            version: {
-                name: "WorldGenTest - TechDemo 1",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "./res/img/game_icon_jasg.png",
-            previewURL: "./res/img/preview_jasg.png",
-            descriptionTitle: "Just a survival game",
-            description: "JASG is a fantasy 8-bit Survival game, within a topdown-perspective world.<br><br>This amazing new experience comes with a lot of exploration, advancing through this mysterious world, achieving magic, defeating bosses, crafting equipment and many more! Have i mentioned that its like 70% procedural?",
-            downloadURL: "",
-            color: "#140C1F"
-        },
-        {
-            name: "Soldiers of The Office",
-            version: {
-                name: "N/A",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "./res/img/game_icon_soto.png",
-            previewURL: "./res/img/placeholder_preview.png",
-            descriptionTitle: "Description",
-            description: "Soldiers of the office is a story based, 2D platformer-shooter, all about the weird war of humans against an infection that spreads with ultra-modern technology.",
-            downloadURL: "",
-            color: "#242735"
-        },
-        {
-            name: "Project Freedom",
-            version: {
-                name: "N/A",
-                versionNumber: "0.0.0"
-            },
-            iconURL: "./res/img/game_icon_pf.png",
-            previewURL: "./res/img/placeholder_preview.png",
-            descriptionTitle: "Description",
-            description: "Project Freedom is a 3D game, but its not what you would expect.<br><br>This game will have a play-mode for every type of game, like minecraft, pubg, cs:go, lol, overwatch, and many more new custom or weird play-modes",
-            downloadURL: "",
-            color: "#009f00"
-        }
-    ]
-
-    emptySidebar()
-
-    var badgeDownload = "fas fa-arrow-alt-circle-down"
-    var badgeDownloadColor = "#4CBE6A"
-    var badgeUpdate = "fas fa-arrow-alt-circle-up"
-    var badgeUpdateColor = "#E1E1E1"
-    var badgeError = "fas fa-exclamation-circle"
-    var badgeErrorColor = "#E95F66"
-
-    for (const i in testGameInfo) {
-        var gameIcon = document.createElement("img")
-        gameIcon.setAttribute("src", testGameInfo[i].iconURL)
-        gameIcon.setAttribute("class", "sidebar_item_icon")
-        gameIcon.setAttribute("alt", "sidebar_item_icon")
-        gameIcon.setAttribute("draggable", "false")
-
-        var downStatus = document.createElement("i")
-        downStatus.setAttribute("class", badgeDownload)
-        downStatus.setAttribute("id", "sidebar_item_badge")
-        downStatus.style.color = badgeDownloadColor
-
-        var gameDiv = document.createElement("div")
-        gameDiv.setAttribute("class", "sidebar_item")
-        gameDiv.style.backgroundColor = testGameInfo[i].color
-        gameDiv.appendChild(gameIcon)
-        gameDiv.appendChild(downStatus)
-        gameDiv.onclick = () => {
-            selectGame(Number.parseInt(i))
-        }
-
-        getElement("game-list").appendChild(gameDiv)
-    }
-
-    selectGame(0)
-
-    function selectGame(id: number) {
-        getElement("game-preview").style.backgroundImage = "url(" + testGameInfo[id].previewURL + ")"
-        getElement("game-icon-img").setAttribute("src", testGameInfo[id].iconURL)
-        getElement("game-icon").style.backgroundColor = testGameInfo[id].color
-        getElement("game-title").innerHTML = testGameInfo[id].name
-        getElement("game-version").innerHTML = testGameInfo[id].version.name
-        getElement("game-description-title").innerHTML = testGameInfo[id].descriptionTitle
-        getElement("game-description").innerHTML = testGameInfo[id].description
-    }
-
-    function createGameContent() {
-
-        getElement("sub-header-friends").style.display = "none"
-        getElement("sub-header-groups").style.display = "none"
-        getElement("add-friend").style.display = "none"
-
-        // <div><img src="" alt="game-icon" id="game-icon"></div>
-        var iconImg = document.createElement("img")
-        iconImg.setAttribute("src", "")
-        iconImg.setAttribute("alt", "game-icon")
-        iconImg.setAttribute("id", "game-icon-img")
-        iconImg.setAttribute("draggable", "false")
-
-        var iconDiv = document.createElement("div")
-        iconDiv.setAttribute("id", "game-icon")
-        iconDiv.appendChild(iconImg)
-    
-        // <h1 id="game-title"></h1>
-        var nameH1 = document.createElement("h1")
-        nameH1.innerHTML = ""
-        nameH1.setAttribute("id", "game-title")
-    
-        // <h2 id="game-version"></h2>
-        var versionH2 = document.createElement("h2")
-        versionH2.innerHTML = ""
-        versionH2.setAttribute("id", "game-version")
-    
-        // <input type="submit" value="Play/Update" id="play-update" class="button_regular">
-        var button = document.createElement("input")
-        button.setAttribute("type", "submit")
-        button.setAttribute("value", "Play/Update")
-        button.setAttribute("id", "play-update")
-        button.setAttribute("class", "button_regular")
-    
-        // <div id="game-preview" style="backgroud-image: ">
-        // ...
-        // </div>
-        var gamePreviewDiv = document.createElement("div")
-        gamePreviewDiv.style.backgroundImage = ""
-        gamePreviewDiv.setAttribute("id", "game-preview")
-    
-        gamePreviewDiv.appendChild(iconDiv)
-        gamePreviewDiv.appendChild(nameH1)
-        gamePreviewDiv.appendChild(versionH2)
-        gamePreviewDiv.appendChild(button)
-    
-    
-        getElement("tab-content").appendChild(gamePreviewDiv)
-    
-        // <h1 id="game-description-title"></h1>
-        var descTitle = document.createElement("h1")
-        descTitle.innerHTML = ""
-        descTitle.setAttribute("id", "game-description-title")
-    
-        // <h4 id="game-description"></h4>
-        var desc = document.createElement("h4")
-        desc.innerHTML = ""
-        desc.setAttribute("id", "game-description")
-    
-        // <div>
-        // ...
-        // </div>
-        var descDiv = document.createElement("div")
-    
-        descDiv.appendChild(descTitle)
-        descDiv.appendChild(desc)
-    
-        getElement("tab-content").appendChild(descDiv)
-    }
-}
-
-function emptySidebar() {
-    while (getElement("game-list").hasChildNodes()) {
-        getElement("game-list").removeChild(getElement("game-list").childNodes[0])
-    }
-}
-
-function loadSocialTab() {
-    getElement("sub-header-friends").onclick = () => {
-        getElement("sub-header-friends").setAttribute("class", "header_tab_sub_selected")
-        getElement("sub-header-groups").setAttribute("class", "header_tab_sub")
-    
-        currentSocialTab = SocialTab.FRIENDS
-        selectSocialTab(currentSocialTab)
-    }
-    
-    getElement("sub-header-groups").onclick = () => {
-        getElement("sub-header-groups").setAttribute("class", "header_tab_sub_selected")
-        getElement("sub-header-friends").setAttribute("class", "header_tab_sub")
-    
-        currentSocialTab = SocialTab.GROUPS
-        selectSocialTab(currentSocialTab)
-    }
-
-    emptySidebar()
-    getElement("game-list").setAttribute("class", "sidebar_hidden")
-    createSocialContent()
-    getElement("tab-content").setAttribute("class", "content_social")
-
-
-
-
-    function createSocialContent() {
-        getElement("sub-header-friends").style.display = "inline-block"
-        getElement("sub-header-groups").style.display = "inline-block"
-        getElement("add-friend").style.display = "inline-block"
-        selectSocialTab(currentSocialTab)
-    }
-
-    function selectSocialTab(tab: object) {
-        getElement("tab-content").innerHTML = null
-        if (tab == SocialTab.FRIENDS) loadFriendTab()
-        else loadGroupsTab()
-    }
-
-    function loadFriendTab() {
-        var friendListDiv = document.createElement("div")
-        friendListDiv.setAttribute("id", "friend-list")
-        friendListDiv.setAttribute("class", "friend-list")
-
-        for (var i=0; i< 10; i++) { 
-            var placeholderPFPImage = document.createElement("i")
-            placeholderPFPImage.setAttribute("class", "fas fa-user")
-
-            var testFriendImage = document.createElement("div")
-            testFriendImage.setAttribute("class", "pfp")
-            testFriendImage.appendChild(placeholderPFPImage)
-
-            var testFriendName = document.createElement("h1")
-            testFriendName.setAttribute("id", "friend-user-name")
-            testFriendName.innerHTML = "Cat Core"
-
-            var testFriendStatus = document.createElement("h4")
-            testFriendStatus.setAttribute("id", "friend-user-status")
-            testFriendStatus.innerHTML = "Online"
-
-            var messageInput = document.createElement("input")
-            messageInput.setAttribute("id", "friend-msg-input")
-            messageInput.setAttribute("placeholder","Message")
-            messageInput.setAttribute("type", "text")
-
-            var sendIcon = document.createElement("i")
-            sendIcon.setAttribute("id", "ico-send")
-            sendIcon.setAttribute("class", "fas fa-paper-plane")
-
-            var sendButton = document.createElement("div")
-            sendButton.setAttribute("class", "button_icon")
-            sendButton.setAttribute("id", "send-btn")
-            sendButton.appendChild(sendIcon)
-
-            var messageBoxDiv = document.createElement("div")
-            messageBoxDiv.setAttribute("class", "message_box")
-            messageBoxDiv.appendChild(messageInput)
-            messageBoxDiv.appendChild(sendButton)
-
-            var testFriendDiv = document.createElement("div")
-            testFriendDiv.setAttribute("id", "friend-list-item")
-            testFriendDiv.appendChild(testFriendImage)
-            testFriendDiv.appendChild(testFriendName)
-            testFriendDiv.appendChild(testFriendStatus)
-            testFriendDiv.appendChild(messageBoxDiv)
-
-            friendListDiv.appendChild(testFriendDiv)
-        }
-
-        getElement("tab-content").appendChild(friendListDiv)
-    }
-
-    function loadGroupsTab() {
-
-    }
-}
-
-function loadTab(tab: object) {
-    getElement("tab-content").innerHTML = null
-    if (tab == Tab.GAMES) loadGameTab()
-    else if (tab == Tab.SOCIAL) loadSocialTab()
-}
+export const SocialTabs = [
+    new Header("friends"),
+    new Header("groups")
+]
 
 export const mainWindow = new MainWindow()
