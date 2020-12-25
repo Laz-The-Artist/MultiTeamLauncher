@@ -219,8 +219,6 @@ function loadSocialTab() {
         subMenuDiv.appendChild(friendTab)
         subMenuDiv.appendChild(groupsTab)
 
-        getElement("tab-content").appendChild(subMenuDiv)
-
         var addFriendIcon = document.createElement("i")
         addFriendIcon.setAttribute("id", "ico-addFriend")
         addFriendIcon.setAttribute("class", "fas fa-plus-circle")
@@ -230,18 +228,27 @@ function loadSocialTab() {
         addFriendButton.setAttribute("id", "add-friend")
         addFriendButton.appendChild(addFriendIcon)
 
+        getElement("tab-content").appendChild(subMenuDiv)
         getElement("tab-content").appendChild(addFriendButton)
 
-        var testFriendImage = document.createElement("img")
-        testFriendImage.setAttribute("src", "../../concept/JasgIcon.png")
+        var placeholderPFPImage = document.createElement("i")
+        placeholderPFPImage.setAttribute("class", "fas fa-user")
+
+        var testFriendImage = document.createElement("div")
+        testFriendImage.setAttribute("class", "pfp")
+        testFriendImage.appendChild(placeholderPFPImage)
 
         var testFriendName = document.createElement("h1")
+        testFriendName.setAttribute("id", "friend-user-name")
         testFriendName.innerHTML = "Cat Core"
 
         var testFriendStatus = document.createElement("h4")
+        testFriendStatus.setAttribute("id", "friend-user-status")
         testFriendStatus.innerHTML = "Online"
 
         var messageInput = document.createElement("input")
+        messageInput.setAttribute("id", "friend-msg-input")
+        messageInput.setAttribute("placeholder","Message")
         messageInput.setAttribute("type", "text")
 
         var sendIcon = document.createElement("i")
@@ -250,13 +257,16 @@ function loadSocialTab() {
 
         var sendButton = document.createElement("div")
         sendButton.setAttribute("class", "button_icon")
+        sendButton.setAttribute("id", "send-btn")
         sendButton.appendChild(sendIcon)
 
         var messageBoxDiv = document.createElement("div")
+        messageBoxDiv.setAttribute("class", "message_box")
         messageBoxDiv.appendChild(messageInput)
         messageBoxDiv.appendChild(sendButton)
 
         var testFriendDiv = document.createElement("div")
+        testFriendDiv.setAttribute("id", "friend-list-item")
         testFriendDiv.appendChild(testFriendImage)
         testFriendDiv.appendChild(testFriendName)
         testFriendDiv.appendChild(testFriendStatus)
