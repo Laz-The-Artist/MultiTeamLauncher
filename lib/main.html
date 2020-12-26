@@ -25,9 +25,17 @@
         
         <div id="account-preview">
             <div class="account_preview_img"><img src="./res//img//game_icon_jasg.png" alt="profile-picture" id="account-preview-pfp"></div>
-            <div class="button_icon" id="account-manage"><i class="fas fa-ellipsis-v"></i></div>
-            <h4 id="account-preview-username">{{account-username}}</h4>
+            <div class="button_icon" id="account-manage"><i class="fas fa-ellipsis-v" id="account-manage-icon"></i></div>
             <h6 id="account-preview-status">{{account-status}}</h6>
+            <h4 id="account-preview-username">{{account-username}}</h4>
+        </div>
+        <div class="account-preview-dropdown" id="account-preview-dropdown">
+            <a class="account-preview-dropdown-entry" id="user-drpd-entry-1">Online</a>
+            <a class="account-preview-dropdown-entry" id="user-drpd-entry-2">Offline</a>
+            <a class="account-preview-dropdown-entry" id="user-drpd-entry-3">AFK</a>
+            <a class="account-preview-dropdown-entry" id="user-drpd-entry-3">Do Not Disturb</a>
+            <hr class="decor_line" style="border: 1px solid #E1E1E1;">
+            <a class="account-preview-dropdown-entry" id="user-drpd-entry-4">Profile...</a>
         </div>
 
         <hr class="decor_line" style="width:1140px;">

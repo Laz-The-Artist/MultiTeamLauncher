@@ -63,6 +63,15 @@ function createWindow() {
           })
       }
     })
+    .on("friend-list", async (even, data) => {
+      var obj = {
+        friends: await firebaseClient.getFriendList()
+      }
+      even.reply('friend-list', obj)
+    })
+    .on("get-username", (even, data) => {
+      even.reply("get-username", {username: firebaseClient.getUsername(), status: firebaseClient.getStatus()})
+    })
 }
   
 // This method will be called when Electron has finished

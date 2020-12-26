@@ -99,6 +99,12 @@ export class GameTab extends Tab {
     init() {
         this.getElement("tab-content").setAttribute("class", "content_games")
 
+        this.getElement("game-list").setAttribute("class", "sidebar")
+        
+        this.getElement("sub-header-friends").style.display = "none"
+        this.getElement("sub-header-groups").style.display = "none"
+        this.getElement("add-friend").style.display = "none"
+
         // <div><img src="" alt="game-icon" id="game-icon"></div>
         var iconImg = document.createElement("img")
         iconImg.setAttribute("src", "")

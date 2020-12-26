@@ -308,6 +308,19 @@ body {
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.content_mods{
+    margin-right: 0px;
+    margin-left: 144px;
+    margin-top: 0px;
+    height: 620px;
+    width: 1140px;
+    background-color: #141414;
+    border-radius: 3px;
+    transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 .content_social{
     margin-top: 10px;
     margin-left: 62px;
@@ -321,6 +334,20 @@ body {
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.content_settings{
+    margin-top: 10px;
+    margin-left: 62px;
+    margin-right: 0px;
+    height: 590px;
+    width: 1220px;
+    background-color: #262626;
+    border-radius: 3px;
+    transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 #game-icon-img{
     display: block;
     margin-left: auto;
@@ -408,6 +435,8 @@ body {
     background-color: #3E3E3E;
 	border-radius: 3px;
     box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.48);
+    margin-left: 10px;
+    z-index:18;
 }
 #friend-msg-input{
     background-color: #3E3E3E;
@@ -421,6 +450,7 @@ body {
     border: 0px solid rgba(0, 0, 0, 0);
 	border-radius: 3px;
     color: #E1E1E1;
+    z-index: 19;
 }
 #friend-msg-input:focus{
     -webkit-appearance: none;
@@ -432,13 +462,14 @@ body {
     top: -6px;
 }
 #friend-user-status{
+    width:0px;
     display: inline-block;
     position: relative;
     top: -50px;
-    right: 126px;
     text-shadow: 0px 5px 8px rgba(0, 0, 0, 0.48);
 }
 #friend-user-name{
+    min-width: 131px;
     display: inline-block;
     position: relative;
     top: -70px;
@@ -577,15 +608,16 @@ body {
     margin:0px;
     padding:0px;
     position: relative;
-    top: -20px;
+    top: -15px;
 }
 #account-preview-status{
+    width: 0px;
     display: inline-block;
     vertical-align: center;
     margin:0px;
     padding:0px;
     position: relative;
-    left: -310px;
+    left: 5px;
 }
 #account-manage{
     display: inline-block;
@@ -593,4 +625,47 @@ body {
     padding:0px;
     position: relative;
     top: -5px;
+}
+
+.account-preview-dropdown{
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 430px;
+    width: fit-content;
+    background-color: #262626;
+    border-radius: 3px;
+    padding: 5px;
+    z-index: 20;
+}
+
+.account-preview-dropdown_showed{
+    display: unset;
+    position: fixed;
+    top: 50px;
+    right: 430px;
+    width: fit-content;
+    background-color: #262626;
+    border-radius: 3px;
+    padding: 5px;
+    z-index: 20;
+}
+
+.account-preview-dropdown-entry{
+    background-color: #262626;
+    padding: 2px;
+    display: block;
+    transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.3s;
+}
+.account-preview-dropdown-entry:hover{
+    background-color: #3E3E3E;
+    transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.3s;
+}
+.account-preview-dropdown-entry:active{
+    background-color: #3E3E3E;
+    transform: scale(0.8);
+    transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.1s;
 }

@@ -12,12 +12,42 @@ export abstract class SocialSubTab extends Tab {
 
     init() {}
 
+    emptyContent() {
+        this.getElement("tab-content").innerHTML = null
+    }
+
+    isTabSelected(index: number) {
+        return this.getMain().getCurrentTab() == 2 && this.getMain().getCurrentSocialTab() == index
+    }
+
     abstract loadSubTab(): void;
 }
 
 export class FriendsTab extends SocialSubTab {
+    friendList: any[];
     constructor(main: MainWindow) {
         super(main)
+
+        this.friendList = []
+
+        this.getMain().on("friend-list", (even, data) => {
+            this.parseFriendList(data)
+        })
+
+        this.getMain().send("friend-list", {})
+
+        setInterval(() => {
+            this.getMain().send("friend-list", {})
+        }, 60000)
+    }
+
+    parseFriendList(list: any) {
+        this.friendList = list["friends"]
+
+        if (this.isTabSelected(0)) {
+            this.emptyContent()
+            this.loadSubTab()
+        }
     }
 
     loadSubTab() {
@@ -25,7 +55,7 @@ export class FriendsTab extends SocialSubTab {
         friendListDiv.setAttribute("id", "friend-list")
         friendListDiv.setAttribute("class", "friend-list")
 
-        for (let i=0; i< 10; i++) { 
+        for (let i=0; i< this.friendList.length; i++) { 
             var placeholderPFPImage = document.createElement("i")
             placeholderPFPImage.setAttribute("class", "fas fa-user")
 
@@ -35,11 +65,11 @@ export class FriendsTab extends SocialSubTab {
 
             var testFriendName = document.createElement("h1")
             testFriendName.setAttribute("id", "friend-user-name")
-            testFriendName.innerHTML = "Cat Core"
+            testFriendName.innerHTML = this.friendList[i].username
 
             var testFriendStatus = document.createElement("h4")
             testFriendStatus.setAttribute("id", "friend-user-status")
-            testFriendStatus.innerHTML = "Online"
+            testFriendStatus.innerHTML = this.friendList[i].status
 
             var messageInput = document.createElement("input")
             messageInput.setAttribute("id", "friend-msg-input")
@@ -63,8 +93,8 @@ export class FriendsTab extends SocialSubTab {
             var testFriendDiv = document.createElement("div")
             testFriendDiv.setAttribute("id", "friend-list-item")
             testFriendDiv.appendChild(testFriendImage)
-            testFriendDiv.appendChild(testFriendName)
             testFriendDiv.appendChild(testFriendStatus)
+            testFriendDiv.appendChild(testFriendName)
             testFriendDiv.appendChild(messageBoxDiv)
 
             friendListDiv.appendChild(testFriendDiv)
@@ -96,5 +126,10 @@ export class SocialTab extends Tab {
 
     init() {
         this.getElement("tab-content").setAttribute("class", "content_social")
+        this.getElement("game-list").setAttribute("class", "sidebar_hidden")
+        
+        this.getElement("sub-header-friends").style.display = "inline-block"
+        this.getElement("sub-header-groups").style.display = "inline-block"
+        this.getElement("add-friend").style.display = "inline-block"
     }
 }

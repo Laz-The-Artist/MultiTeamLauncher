@@ -6,11 +6,20 @@ export class FirebaseHandler {
     private database: firebase.database.Database
 
     private username: string = ""
+    private status: string = "online"
 
     constructor(config: object) {
         firebase.initializeApp(config)
         this.auth = firebase.auth()
         this.database = firebase.database()
+    }
+
+    getUsername() {
+        return this.username
+    }
+
+    getStatus() {
+        return this.status
     }
 
     createAccount(username: string, email: string, password: string) {
@@ -48,17 +57,51 @@ export class FirebaseHandler {
         this.database.ref("users/" + this.uid).child(key).set(value)
     }
 
-    private getUserInfo(key: string) {
+    private getUserField(key: string) {
         return this.database.ref("users/" + this.uid).child(key).get()
     }
 
     private connect() {
         this.setUserInfo("status", "online")
 
-        this.getUserInfo("username").then((val) => {
+        this.getUserField("username").then((val) => {
             this.username = val.val()
         }, (reason) => {
             console.error(reason)
         })
+    }
+
+    private async getUserInfo(id: string): Promise<object> {
+        var obj = {}
+
+        var objPro = await this.database.ref("users/" + id).get()
+
+        if (objPro) {
+            obj = objPro.val()
+        }
+
+        return obj;
+    }
+
+    async getFriendList(): Promise<any[]> {
+        var friendList: any[] = []
+
+        var friendListPromise = await this.getUserField("friends")
+
+        if (friendListPromise) {
+            var ids = (<string[]>friendListPromise.val())
+            for (let i = 0; i < ids.length; i++) {
+                friendList.push(await this.getUserInfo(ids[i]))
+            }
+        }
+        // .then((val) => {
+        //     var list = (<string[]>val.val())
+        //     for (let i = 0; i < list.length; i++) {
+        //         friendList.push(this.getUserInfo(list[i]))
+        //     }
+        // })
+
+
+        return friendList;
     }
 }

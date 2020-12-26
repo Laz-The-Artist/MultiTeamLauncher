@@ -11,6 +11,12 @@ export class ModsTab extends Tab {
     }
 
     init() {
+        this.getElement("tab-content").setAttribute("class", "content_mods")
+
+        this.getElement("game-list").setAttribute("class", "sidebar")
         
+        this.getElement("sub-header-friends").style.display = "none"
+        this.getElement("sub-header-groups").style.display = "none"
+        this.getElement("add-friend").style.display = "none"
     }
 }
