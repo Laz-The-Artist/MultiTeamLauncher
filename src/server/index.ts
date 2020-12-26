@@ -107,6 +107,10 @@ async function createWindow() {
       }
       return {pass:false, reason: er}
     }
+
+    app.on("before-quit", () => {
+      firebaseClient.setUserInfo("status", "offline")
+    })
 }
   
 // This method will be called when Electron has finished

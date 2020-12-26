@@ -72,11 +72,11 @@ export class FirebaseHandler {
         this.setUserInfo("uid", uid)
     }
 
-    private setUserInfo(key: string, value: any) {
+    setUserInfo(key: string, value: any) {
         this.database.ref("users/" + this.uid).child(key).set(value)
     }
 
-    private getUserField(key: string) {
+    getUserField(key: string) {
         return this.database.ref("users/" + this.uid).child(key).get()
     }
 
