@@ -26,7 +26,7 @@ async function createWindow() {
     const mainWindow = new BrowserWindow({
       height: 737,
       width: 1312,
-      icon: path.join(__dirname, '/res/img/', 'mt_launcher_icon.png'),
+      icon: path.join(__dirname, '../res/img/', 'mt_launcher_icon.png'),
       resizable: false,
       webPreferences: {
         nodeIntegration: true,
