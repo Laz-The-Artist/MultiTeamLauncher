@@ -1,7 +1,9 @@
 import {app, BrowserWindow, ipcMain} from 'electron'
 
 import * as path from 'path'
+import { DataStorage } from './datastorage';
 import { FirebaseHandler } from './firebase';
+import {Crypter} from './crypter'
 
 var firebaseConfig = {
   apiKey: "AIzaSyCec2A2RTYHx3iCU7VwzJxSgoW51VrTk9A",
@@ -15,8 +17,9 @@ var firebaseConfig = {
 };
 
 
-function createWindow() {
+async function createWindow() {
   const firebaseClient = new FirebaseHandler(firebaseConfig)
+  const dataStorage = new DataStorage(app.getPath("userData"));
 
 
     // Create the browser window.
@@ -31,46 +34,38 @@ function createWindow() {
         // preload: path.join(__dirname, "renderer/login.js")
       }
     });
+
+    var existingCreditentials = {
+      email: "",
+      password: ""
+    }
+
+    if (await dataStorage.fileExist("creditentials.data")) {
+      var uncrypter = new Crypter(await dataStorage.readFile("creditentials.data"))
+      existingCreditentials.email = uncrypter.readString()
+      existingCreditentials.password = uncrypter.readString()
+    }
+
+
   
     // and load the index.html of the app.
-    mainWindow.loadFile(path.join(__dirname, "../login.html"));
-  
+    if (existingCreditentials.email != "" && existingCreditentials.password != "" && (await tryLogin(0, existingCreditentials)).pass) {
+      await login(mainWindow, existingCreditentials.email, existingCreditentials.password)
+    } else {
+      mainWindow.loadFile(path.join(__dirname, "../login.html"));
+    }
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
-    ipcMain.on('login', (even, data) => {
-      if (data["operation"] == 1) {
-        firebaseClient.createAccount(data["username"], data["email"], data["password"])
-          .then((val) => {
-            mainWindow.loadFile(path.join(__dirname, "../main.html"))
-          }, (reason) => {
-            ipcMain.emit("login-error", {
-              operation: data["operation"],
-              error: reason
-            })
-          })
-          .catch((err) => {
-            ipcMain.emit("login-error", {
-              operation: data["operation"],
-              error: err
-            })
-          })
+    ipcMain.on('login', async (even, data) => {
+      var result = await tryLogin(data["operation"], data)
+      if (result.pass) {
+        await login(mainWindow, data["email"], data["password"])
       } else {
-        firebaseClient.login(data["email"], data["password"])
-          .then((val) => {
-            mainWindow.loadFile(path.join(__dirname, "../main.html"))
-          }, (reason) => {
-            ipcMain.emit("login-error", {
-              operation: data["operation"],
-              error: reason
-            })
-          })
-          .catch((err) => {
-            ipcMain.emit("login-error", {
-              operation: data["operation"],
-              error: err
-            })
-          })
+        ipcMain.emit("login-error", {
+          operation: data["operation"],
+          error: result.reason
+        })
       }
     })
     .on("friend-list", async (even, data) => {
@@ -82,6 +77,36 @@ function createWindow() {
     .on("get-username", (even, data) => {
       even.reply("get-username", {username: firebaseClient.getUsername(), status: firebaseClient.getStatus()})
     })
+
+    async function login(mainWindow: BrowserWindow, email: string, password: string) {
+      mainWindow.loadFile(path.join(__dirname, "../main.html"))
+
+      var crypter = new Crypter()
+      crypter.writeString(email)
+      crypter.writeString(password)
+
+      await dataStorage.writeFile("creditentials.data", crypter.getBuffer())
+    }
+
+    async function tryLogin(action: number, data: any) {
+      var er = {}
+      if (action == 1) {
+        try {
+          await firebaseClient.createAccount(data["username"], data["email"], data["password"])
+          return {pass:true}
+        } catch (e) {
+          er = e
+        }
+      } else {
+        try {
+          await firebaseClient.login(data["email"], data["password"])
+          return {pass:true}
+        } catch (e) {
+          er = e
+        }
+      }
+      return {pass:false, reason: er}
+    }
 }
   
 // This method will be called when Electron has finished

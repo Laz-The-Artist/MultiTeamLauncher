@@ -31,6 +31,10 @@ export class FirebaseHandler {
             this.setUserInfo("friends", [])
 
             this.connect()
+        }, (reason) => {
+            
+        }).catch((reason) => {
+
         })
 
         return prom
@@ -43,6 +47,10 @@ export class FirebaseHandler {
             this.setUid(cred.user.uid)
 
             this.connect()
+        }, (reason) => {
+            
+        }).catch((reason) => {
+
         })
 
         return prom
@@ -68,6 +76,8 @@ export class FirebaseHandler {
             this.username = val.val()
         }, (reason) => {
             console.error(reason)
+        }).catch((reason) => {
+            console.error(reason)
         })
     }
 
@@ -89,17 +99,15 @@ export class FirebaseHandler {
         var friendListPromise = await this.getUserField("friends")
 
         if (friendListPromise) {
-            var ids = (<string[]>friendListPromise.val())
-            for (let i = 0; i < ids.length; i++) {
-                friendList.push(await this.getUserInfo(ids[i]))
+            try {
+                var ids = (<string[]>friendListPromise.val())
+                for (let i = 0; i < ids.length; i++) {
+                    friendList.push(await this.getUserInfo(ids[i]))
+                }
+            } catch(e) {
+                console.log("Friends list doesn't exist.")
             }
         }
-        // .then((val) => {
-        //     var list = (<string[]>val.val())
-        //     for (let i = 0; i < list.length; i++) {
-        //         friendList.push(this.getUserInfo(list[i]))
-        //     }
-        // })
 
 
         return friendList;

@@ -8,7 +8,6 @@ enum Operation {
 let operation = Operation.SIGNIN
 
 for (const i in [0,1]) {
-    console.log(i)
     document.getElementById("connect" + i).onclick = () => {
         electron.ipcRenderer.send('login', {
             email: (<any>document.getElementById("email" + i)).value,
@@ -45,5 +44,5 @@ electron.ipcRenderer.on("login-error", (even, data) => {
     } else {
         document.getElementById("msg-login-error").style.display = "block"
     }
-    // console.error(data["error"])
+    console.error(data["error"])
 })
