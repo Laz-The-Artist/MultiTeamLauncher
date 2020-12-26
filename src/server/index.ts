@@ -33,7 +33,7 @@ function createWindow() {
     });
   
     // and load the index.html of the app.
-    mainWindow.loadFile(path.join(__dirname, "./login.html"));
+    mainWindow.loadFile(path.join(__dirname, "../login.html"));
   
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
@@ -42,7 +42,12 @@ function createWindow() {
       if (data["operation"] == 1) {
         firebaseClient.createAccount(data["username"], data["email"], data["password"])
           .then((val) => {
-            mainWindow.loadFile(path.join(__dirname, "./main.html"))
+            mainWindow.loadFile(path.join(__dirname, "../main.html"))
+          }, (reason) => {
+            ipcMain.emit("login-error", {
+              operation: data["operation"],
+              error: reason
+            })
           })
           .catch((err) => {
             ipcMain.emit("login-error", {
@@ -53,7 +58,12 @@ function createWindow() {
       } else {
         firebaseClient.login(data["email"], data["password"])
           .then((val) => {
-            mainWindow.loadFile(path.join(__dirname, "./main.html"))
+            mainWindow.loadFile(path.join(__dirname, "../main.html"))
+          }, (reason) => {
+            ipcMain.emit("login-error", {
+              operation: data["operation"],
+              error: reason
+            })
           })
           .catch((err) => {
             ipcMain.emit("login-error", {
