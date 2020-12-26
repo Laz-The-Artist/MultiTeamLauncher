@@ -74,8 +74,8 @@ async function createWindow() {
       }
       even.reply('friend-list', obj)
     })
-    .on("get-username", (even, data) => {
-      even.reply("get-username", {username: firebaseClient.getUsername(), status: firebaseClient.getStatus()})
+    .on("get-username", async (even, data) => {
+      even.reply("get-username", {username: await firebaseClient.getUsername(), status: firebaseClient.getStatus()})
     })
 
     async function login(mainWindow: BrowserWindow, email: string, password: string) {

@@ -14,7 +14,18 @@ export class FirebaseHandler {
         this.database = firebase.database()
     }
 
-    getUsername() {
+    async getUsername() {
+        if (!this.username) {
+            try {
+                var name = await this.getUserField("username")
+    
+                if (name) this.username = name.val()
+            } catch (e) {
+                console.error(e)
+            }
+        }
+
+
         return this.username
     }
 
@@ -43,10 +54,10 @@ export class FirebaseHandler {
     login(email: string, password: string) {
         var prom = this.auth.signInWithEmailAndPassword(email, password)
         
-        prom.then((cred: firebase.auth.UserCredential) => {
+        prom.then(async (cred: firebase.auth.UserCredential) => {
             this.setUid(cred.user.uid)
 
-            this.connect()
+            await this.connect()
         }, (reason) => {
             
         }).catch((reason) => {
@@ -69,16 +80,16 @@ export class FirebaseHandler {
         return this.database.ref("users/" + this.uid).child(key).get()
     }
 
-    private connect() {
+    private async connect() {
         this.setUserInfo("status", "online")
 
-        this.getUserField("username").then((val) => {
-            this.username = val.val()
-        }, (reason) => {
-            console.error(reason)
-        }).catch((reason) => {
-            console.error(reason)
-        })
+        try {
+            var name = await this.getUserField("username")
+
+            if (name) this.username = name.val()
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     private async getUserInfo(id: string): Promise<object> {

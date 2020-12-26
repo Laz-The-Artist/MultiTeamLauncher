@@ -14,8 +14,6 @@ export class MainWindow {
 
     private accountManage = false
 
-    private accountManagePos: any
-
     constructor() {
         this.tabs = [new GameTab(this), new ModsTab(this), new SocialTab(this), new SettingsTab(this)]
         this.socialTabs = [new FriendsTab(this), new GroupsTab(this)]
@@ -30,11 +28,13 @@ export class MainWindow {
             this.getElement("sub-header-" + SocialTabs[i].getName()).onclick = () => this.setSocialTab(i)
         }
 
-        this.send("get-username", {})
         this.on("get-username", (even, data) => {
+            console.log(data)
             this.getElement("account-preview-username").innerHTML = data["username"]
             this.getElement("account-preview-status").innerHTML = data["status"]
         })
+
+        this.send("get-username", {})
 
         this.getElement("account-manage").onclick = () => {
             this.getElement("account-preview-dropdown").setAttribute("class", "account-preview-dropdown_showed")
