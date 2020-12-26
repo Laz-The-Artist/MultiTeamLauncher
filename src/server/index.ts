@@ -35,6 +35,8 @@ async function createWindow() {
       }
     });
 
+    mainWindow.loadFile(path.join(__dirname, "../loading.html"))
+
     var existingCreditentials = {
       email: "",
       password: ""
