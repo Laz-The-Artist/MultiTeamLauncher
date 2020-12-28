@@ -21,7 +21,7 @@ export class MainWindow {
     constructor() {
         this.on("client-settings", (even, data) => {
             this.clientSettings = JSON.parse(data["settings"])
-            this.setTab(this.clientSettings["defaultStartTab"])
+            if (!this.currentTab) this.setTab(this.clientSettings["defaultStartTab"])
         })
         this.send("client-settings", {})
 

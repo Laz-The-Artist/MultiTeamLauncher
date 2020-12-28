@@ -1,4 +1,4 @@
-import {app, BrowserWindow, ipcMain} from 'electron'
+import {app, BrowserWindow, ipcMain, dialog} from 'electron'
 
 import * as path from 'path'
 import { ClientSettings, DataStorage } from './datastorage';
@@ -92,6 +92,21 @@ async function createWindow() {
   }).on("client-settings-update", async (even, data) => {
     clientSettings.fromJson(JSON.parse(data["settings"]))
     await dataStorage.writeFile("client_settings.json", clientSettings.write(new Crypter()).getBuffer())
+  }).on("chose-path", async (ev, data) => {
+    var options: any = {
+      properties: [
+        "createDirectory", "dontAddToRecent", "openDirectory", "showHiddenFiles", "treatPackageAsDirectory"
+      ]
+    }
+
+    data["path"] == "unset" ? undefined : options["defaultPath"] = data["path"];
+
+    var newPath = dialog.showOpenDialogSync(mainWindow, options)[0]
+
+    clientSettings.setGameLibraryLoc(newPath)
+    await dataStorage.writeFile("client_settings.json", clientSettings.write(new Crypter()).getBuffer())
+    ev.reply("client-settings", {settings:JSON.stringify(clientSettings)})
+    ev.reply("chose-path", {libPath:newPath})
   })
 
   async function login(mainWindow: BrowserWindow, email: string, password: string, clientSettings: ClientSettings) {

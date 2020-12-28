@@ -73,6 +73,12 @@ export class GeneralSettingsTab extends SettingsSubTab {
 
     constructor(main: MainWindow) {
         super(main)
+
+        this.getMain().on("chose-path", (ev, data) => {
+            if (this.isTabSelected(0)) {
+                this.loadSubTab()
+            }
+        })
     }
     
     loadSubTab(): void {
@@ -113,6 +119,10 @@ export class GeneralSettingsTab extends SettingsSubTab {
         this.getElement("checkbox-auto-start").onchange = (ev) => {
             this.getMain().setClientSettingsField("runAtStartUp", (<any>this.getElement("checkbox-auto-start"))["checked"])
         }
+
+        this.getElement("chose-path").onclick = () => {
+            this.getMain().send("chose-path", {path: (<any>this.getElement("game-lib-loc-input")).value})
+        }
     }
     
     getName() {
@@ -139,10 +149,19 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .set("placeholder","This is where games are installed.")
             .set("name","Game Library location")
 
+        var gameLibLocButton = this.HTMLElement("input")
+            .set("type", "submit")
+            .set("value", "Chose")
+            .set("id", "chose-path")
+            .set("class", "button_regular")
+            
+
         var settingGameLibLoc = this.HTMLElement("div")
             .set("id", "game-lib-loc")
             .child(gameLibLocText.build())
             .child(gameLibLocInput.build())
+            .child(gameLibLocButton.build())
+
 
         //CHECKBOX - AutoUpdate Games
         var checkboxAutoUpdateGame_ = this.HTMLElement("i")
