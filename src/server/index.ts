@@ -106,7 +106,7 @@ async function createWindow() {
     clientSettings.setGameLibraryLoc(newPath)
     await dataStorage.writeFile("client_settings.json", clientSettings.write(new Crypter()).getBuffer())
     ev.reply("client-settings", {settings:JSON.stringify(clientSettings)})
-    ev.reply("chose-path", {libPath:newPath})
+    ev.reply("chose-path", {})
   })
 
   async function login(mainWindow: BrowserWindow, email: string, password: string, clientSettings: ClientSettings) {
