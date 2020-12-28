@@ -51,56 +51,60 @@ export class FriendsTab extends SocialSubTab {
     }
 
     loadSubTab() {
-        var friendListDiv = document.createElement("div")
-        friendListDiv.setAttribute("id", "friend-list")
-        friendListDiv.setAttribute("class", "friend-list")
+        var friendListDiv = this.HTMLElement("div")
+            .set("id", "friend-list")
+            .set("class", "friend-list")
 
         for (let i=0; i< this.friendList.length; i++) { 
-            var placeholderPFPImage = document.createElement("i")
-            placeholderPFPImage.setAttribute("class", "fas fa-user")
+            var placeholderPFPImage = this.HTMLElement("i")
+                .set("class", "fas fa-user")
 
-            var testFriendImage = document.createElement("div")
-            testFriendImage.setAttribute("class", "pfp")
-            testFriendImage.appendChild(placeholderPFPImage)
+            var testFriendImage = this.HTMLElement("div")
+                .set("class", "pfp")
+                .child(placeholderPFPImage.build())
 
-            var testFriendName = document.createElement("h1")
-            testFriendName.setAttribute("id", "friend-user-name")
-            testFriendName.innerHTML = this.friendList[i].username
+            var testFriendName = this.HTMLElement("h1")
+                .set("id", "friend-user-name")
+                .setInner(this.friendList[i].username)
 
-            var testFriendStatus = document.createElement("h4")
-            testFriendStatus.setAttribute("id", "friend-user-status")
-            testFriendStatus.innerHTML = this.friendList[i].status
+            var testFriendStatus = this.HTMLElement("h4")
+                .set("id", "friend-user-status")
+                .setInner(this.friendList[i].status)
 
-            var messageInput = document.createElement("input")
-            messageInput.setAttribute("id", "friend-msg-input")
-            messageInput.setAttribute("placeholder","Message")
-            messageInput.setAttribute("type", "text")
+            var messageInput = this.HTMLElement("input")
+                .set("id", "friend-msg-input")
+                .set("placeholder","Message")
+                .set("type", "text")
 
-            var sendIcon = document.createElement("i")
-            sendIcon.setAttribute("id", "ico-send")
-            sendIcon.setAttribute("class", "fas fa-paper-plane")
+            var sendIcon = this.HTMLElement("i")
+                .set("id", "ico-send")
+                .set("class", "fas fa-paper-plane")
 
-            var sendButton = document.createElement("div")
-            sendButton.setAttribute("class", "button_icon")
-            sendButton.setAttribute("id", "send-btn")
-            sendButton.appendChild(sendIcon)
+            var sendButton = this.HTMLElement("div")
+                .set("class", "button_icon")
+                .set("id", "send-btn")
+                .child(sendIcon.build())
 
-            var messageBoxDiv = document.createElement("div")
-            messageBoxDiv.setAttribute("class", "message_box")
-            messageBoxDiv.appendChild(messageInput)
-            messageBoxDiv.appendChild(sendButton)
+            var messageBoxDiv = this.HTMLElement("div")
+                .set("class", "message_box")
+                .child(messageInput.build())
+                .child(sendButton.build())
 
-            var testFriendDiv = document.createElement("div")
-            testFriendDiv.setAttribute("id", "friend-list-item")
-            testFriendDiv.appendChild(testFriendImage)
-            testFriendDiv.appendChild(testFriendStatus)
-            testFriendDiv.appendChild(testFriendName)
-            testFriendDiv.appendChild(messageBoxDiv)
+            var testFriendDiv = this.HTMLElement("div")
+                .set("id", "friend-list-item")
+                .child(testFriendImage.build())
+                .child(testFriendStatus.build())
+                .child(testFriendName.build())
+                .child(messageBoxDiv.build())
 
-            friendListDiv.appendChild(testFriendDiv)
+            friendListDiv.child(testFriendDiv.build())
         }
 
-        this.getElement("tab-content").appendChild(friendListDiv)
+        this.getElement("tab-content").appendChild(friendListDiv.build())
+    }
+
+    getName() {
+        return "friends"
     }
 }
 
@@ -111,6 +115,10 @@ export class GroupsTab extends SocialSubTab {
 
     loadSubTab() {
         
+    }
+
+    getName() {
+        return "groups"
     }
 }
 
@@ -131,5 +139,12 @@ export class SocialTab extends Tab {
         this.getElement("sub-header-friends").style.display = "inline-block"
         this.getElement("sub-header-groups").style.display = "inline-block"
         this.getElement("add-friend").style.display = "inline-block"
+
+        this.getElement("sub-header-general").style.display = "none"
+        this.getElement("sub-header-account").style.display = "none"
+    }
+
+    getName() {
+        return "social"
     }
 }

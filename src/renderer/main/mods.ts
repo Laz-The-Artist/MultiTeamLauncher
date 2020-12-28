@@ -18,5 +18,12 @@ export class ModsTab extends Tab {
         this.getElement("sub-header-friends").style.display = "none"
         this.getElement("sub-header-groups").style.display = "none"
         this.getElement("add-friend").style.display = "none"
+        
+        this.getElement("sub-header-general").style.display = "none"
+        this.getElement("sub-header-account").style.display = "none"
+    }
+
+    getName() {
+        return "mods"
     }
 }

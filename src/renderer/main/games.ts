@@ -59,27 +59,27 @@ export class GameTab extends Tab {
 
 
         for (const i in this.testGameInfo) {
-            var gameIcon = document.createElement("img")
-            gameIcon.setAttribute("src", this.testGameInfo[i].iconURL)
-            gameIcon.setAttribute("class", "sidebar_item_icon")
-            gameIcon.setAttribute("alt", "sidebar_item_icon")
-            gameIcon.setAttribute("draggable", "false")
+            var gameIcon = this.HTMLElement("img")
+                .set("src", this.testGameInfo[i].iconURL)
+                .set("class", "sidebar_item_icon")
+                .set("alt", "sidebar_item_icon")
+                .set("draggable", "false")
     
-            var downStatus = document.createElement("i")
-            downStatus.setAttribute("class", badgeDownload)
-            downStatus.setAttribute("id", "sidebar_item_badge")
-            downStatus.style.color = badgeDownloadColor
+            var downStatus = this.HTMLElement("i")
+                .set("class", badgeDownload)
+                .set("id", "sidebar_item_badge")
+                .setStyle("color", badgeDownloadColor)
     
-            var gameDiv = document.createElement("div")
-            gameDiv.setAttribute("class", "sidebar_item")
-            gameDiv.style.backgroundColor = this.testGameInfo[i].color
-            gameDiv.appendChild(gameIcon)
-            gameDiv.appendChild(downStatus)
-            gameDiv.onclick = () => {
-                this.selectGame(Number.parseInt(i))
-            }
+            var gameDiv = this.HTMLElement("div")
+                .set("class", "sidebar_item")
+                .setStyle("background-color", this.testGameInfo[i].color)
+                .child(gameIcon.build())
+                .child(downStatus.build())
+                .event("click", () => {
+                    this.selectGame(Number.parseInt(i))
+                })
     
-            this.getElement("game-list").appendChild(gameDiv)
+            this.getElement("game-list").appendChild(gameDiv.build())
         }
 
         this.selectGame(0)
@@ -105,67 +105,70 @@ export class GameTab extends Tab {
         this.getElement("sub-header-groups").style.display = "none"
         this.getElement("add-friend").style.display = "none"
 
-        // <div><img src="" alt="game-icon" id="game-icon"></div>
-        var iconImg = document.createElement("img")
-        iconImg.setAttribute("src", "")
-        iconImg.setAttribute("alt", "game-icon")
-        iconImg.setAttribute("id", "game-icon-img")
-        iconImg.setAttribute("draggable", "false")
+        this.getElement("sub-header-general").style.display = "none"
+        this.getElement("sub-header-account").style.display = "none"
 
-        var iconDiv = document.createElement("div")
-        iconDiv.setAttribute("id", "game-icon")
-        iconDiv.appendChild(iconImg)
+        // <div><img src="" alt="game-icon" id="game-icon"></div>
+        var iconImg = this.HTMLElement("img")
+            .set("src", "")
+            .set("alt", "game-icon")
+            .set("id", "game-icon-img")
+            .set("draggable", "false")
+
+        var iconDiv = this.HTMLElement("div")
+            .set("id", "game-icon")
+            .child(iconImg.build())
     
         // <h1 id="game-title"></h1>
-        var nameH1 = document.createElement("h1")
-        nameH1.innerHTML = ""
-        nameH1.setAttribute("id", "game-title")
+        var nameH1 = this.HTMLElement("h1")
+            .set("id", "game-title")
     
         // <h2 id="game-version"></h2>
-        var versionH2 = document.createElement("h2")
-        versionH2.innerHTML = ""
-        versionH2.setAttribute("id", "game-version")
+        var versionH2 = this.HTMLElement("h2")
+            .set("id", "game-version")
     
         // <input type="submit" value="Play/Update" id="play-update" class="button_regular">
-        var button = document.createElement("input")
-        button.setAttribute("type", "submit")
-        button.setAttribute("value", "Play/Update")
-        button.setAttribute("id", "play-update")
-        button.setAttribute("class", "button_regular")
+        var button = this.HTMLElement("input")
+            .set("type", "submit")
+            .set("value", "Play/Update")
+            .set("id", "play-update")
+            .set("class", "button_regular")
     
         // <div id="game-preview" style="backgroud-image: ">
         // ...
         // </div>
-        var gamePreviewDiv = document.createElement("div")
-        gamePreviewDiv.style.backgroundImage = ""
-        gamePreviewDiv.setAttribute("id", "game-preview")
+        var gamePreviewDiv = this.HTMLElement("div")
+            .setStyle("backgroundImage", "")
+            .set("id", "game-preview")
     
-        gamePreviewDiv.appendChild(iconDiv)
-        gamePreviewDiv.appendChild(nameH1)
-        gamePreviewDiv.appendChild(versionH2)
-        gamePreviewDiv.appendChild(button)
+            .child(iconDiv.build())
+            .child(nameH1.build())
+            .child(versionH2.build())
+            .child(button.build())
     
     
-        this.getElement("tab-content").appendChild(gamePreviewDiv)
+        this.getElement("tab-content").appendChild(gamePreviewDiv.build())
     
         // <h1 id="game-description-title"></h1>
-        var descTitle = document.createElement("h1")
-        descTitle.innerHTML = ""
-        descTitle.setAttribute("id", "game-description-title")
+        var descTitle = this.HTMLElement("h1")
+            .set("id", "game-description-title")
     
         // <h4 id="game-description"></h4>
-        var desc = document.createElement("h4")
-        desc.innerHTML = ""
-        desc.setAttribute("id", "game-description")
+        var desc = this.HTMLElement("h4")
+            .set("id", "game-description")
     
         // <div>
         // ...
         // </div>
-        var descDiv = document.createElement("div")
+        var descDiv = this.HTMLElement("div")
     
-        descDiv.appendChild(descTitle)
-        descDiv.appendChild(desc)
+        descDiv.child(descTitle.build())
+        descDiv.child(desc.build())
     
-        this.getElement("tab-content").appendChild(descDiv)
+        this.getElement("tab-content").appendChild(descDiv.build())
+    }
+
+    getName() {
+        return "games"
     }
 }
