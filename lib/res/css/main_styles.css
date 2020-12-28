@@ -69,19 +69,102 @@ body {
 
 /* GLOBAL */
 .inputfield{
-    margin-top: 30px;
     -webkit-appearance: none;
     max-height: 35px;
-    background-color: #E1E1E1;
-    font-family: 'Open Sans';
     font-size: 20px;
-    text-align: center;
+    font-family: 'Open Sans';
+    background-color: #3E3E3E;
     align-content: center;
     border: 0px solid rgba(0, 0, 0, 0);
+    text-align: left;
 	border-radius: 3px;
+    color: #E1E1E1;
+}
+.inputfield:active{
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
 }
 .inputfield:focus{
     -webkit-appearance: none;
+    border: none;
+    outline: none;
+}
+
+.input_selector{
+    -webkit-appearance: none;
+    max-height:35px;
+    font-size: 20px;
+    font-family: 'Open Sans';
+    background-color: #3E3E3E;
+    align-content: center;
+    color:#E1E1E1;
+    padding:5px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+}
+.input_selector:active{
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+}
+.input_selector:focus{
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+}
+
+.input_checkbox{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width:33px;
+    height:33px;
+    border: none;
+    border-radius:100%;
+    background-color: #3E3E3E;
+    transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
+    z-index:11;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+#checkmark-icon{
+    pointer-events: none;
+    display:none;
+    font-size: 33px;
+    position: relative;
+    right: 43px;
+    top:-5px;
+    color:#262626;
+    width:0px;
+    z-index:12;
+    transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+}
+.input_checkbox:hover + #checkmark-icon{
+    cursor: pointer;
+    transform: scale(1.3);
+    color:#7E7E7E;
+    display: inline-block;
+}
+.input_checkbox:active + #checkmark-icon{
+    transform: scale(0.9);
+    transition-duration: 0.1s;
+    color: #E1E1E1;
+	display: inline-block;
+}
+.input_checkbox:focus{
+    outline: none;
+}
+.input_checkbox:checked + #checkmark-icon{
+    transition-duration: 0.2s;
+    color: #E1E1E1;
+	display: inline-block;
 }
 
 .button_regular{
@@ -107,6 +190,9 @@ body {
 .button_regular:active{
     transform: scale(1.0);
     transition-duration: 0.1s;
+}
+.button_regular:focus{
+    outline: none;
 }
 
 .button_icon{
@@ -392,10 +478,10 @@ body {
     overflow-x: hidden;
 }
 .content_settings{
-    margin-top: 10px;
+    margin-top: 50px;
     margin-left: 62px;
     margin-right: 0px;
-    height: 590px;
+    height: 560px;
     width: 1220px;
     background-color: #262626;
     border-radius: 3px;
@@ -540,6 +626,36 @@ body {
     position: absolute;
     left: -50px;
     top:5px;
+}
+
+.setting_panel_title{
+    font-size: 37pt;
+    margin-left: 16px;
+}
+.settings-entry{
+    font-size: 24pt;
+    margin-left: 16px;
+    margin-right: 10px;
+}
+
+#game-lib-loc-input{
+    width:400px;
+}
+
+#chose-path{
+    max-height: 29px;
+    margin-top: 37px;
+    margin-left: 10px;
+    padding: 0px;
+    font-size: ;
+    -webkit-appearance: none;
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+    border: none;
+    border-radius: 3px;
+	transition: cubic-bezier(.88,.1,.23,.82);
+    transition-duration: 0.2s;
 }
 
   /* HEADER */
