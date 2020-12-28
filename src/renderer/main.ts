@@ -16,12 +16,26 @@ export class MainWindow {
 
     private accountManage = false
 
+    private clientSettings: any = {}
+
     constructor() {
+        this.on("client-settings", (even, data) => {
+            this.clientSettings = JSON.parse(data["settings"])
+            this.setTab(this.clientSettings["defaultStartTab"])
+        })
+        this.send("client-settings", {})
+
+        this.on("get-username", (even, data) => {
+            this.getElement("account-preview-username").innerHTML = data["username"]
+            this.getElement("account-preview-status").innerHTML = data["status"]
+        })
+
+        this.send("get-username", {})
+
+
         this.tabs = [new GameTab(this), new ModsTab(this), new SocialTab(this), new SettingsTab(this)]
         this.socialTabs = [new FriendsTab(this), new GroupsTab(this)]
         this.settingsTabs = [new GeneralSettingsTab(this), new AccountSettingsTab(this)]
-
-        this.setTab(0)
 
         for (let i = 0; i < this.tabs.length; i++) {
             this.getElement("header-" + this.tabs[i].getName()).onclick = () => this.setTab(i)
@@ -34,14 +48,6 @@ export class MainWindow {
         for (let i = 0; i < this.settingsTabs.length; i++) {
             this.getElement("sub-header-" + this.settingsTabs[i].getName()).onclick = () => this.setSettingsTab(i)
         }
-
-        this.on("get-username", (even, data) => {
-            console.log(data)
-            this.getElement("account-preview-username").innerHTML = data["username"]
-            this.getElement("account-preview-status").innerHTML = data["status"]
-        })
-
-        this.send("get-username", {})
 
         this.getElement("account-manage").onclick = () => {
             this.getElement("account-preview-dropdown").setAttribute("class", "account-preview-dropdown_showed")
@@ -61,6 +67,20 @@ export class MainWindow {
         })
     }
 
+    getClientSettings() {
+        return this.clientSettings
+    }
+
+    setClientSettingsField(field: string, value: any) {
+        this.clientSettings[field] = value
+
+        this.send("client-settings-update", {settings: JSON.stringify(this.clientSettings)})
+    }
+
+    getTabArray(): Tab[] {
+        return this.tabs
+    }
+
     getCurrentSocialTab() {
         return this.currentSocialTab
     }
@@ -74,6 +94,10 @@ export class MainWindow {
     }
 
     setTab(tabIndex: number) {
+        if (!tabIndex) {
+            tabIndex = 0
+            this.setClientSettingsField("defaultStartTab", 0)
+        }
         for (let i = 0; i < this.tabs.length; i++) {
             this.getElement("header-" + this.tabs[i].getName()).setAttribute("class", "header_tab")
         }

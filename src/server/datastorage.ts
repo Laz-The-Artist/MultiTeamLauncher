@@ -43,15 +43,34 @@ export class ClientSettings {
     private limitBandwidth: boolean = true
     private limitBandwidthNumber: number = 10
 
-    private languageCode: string = "en_us"
+    private languageCode: number = 0
     private defaultStartTab: number = 0
     private runAtStartUp: boolean = true
 
     constructor() {}
 
-    parse(buf: Crypter) {
+    read(buf: Crypter) {
         var jsonString = buf.readString()
         var json = JSON.parse(jsonString)
+        this.fromJson(json)
+    }
+
+    fromJson(json: any) {
+        this.gameLibraryLoc = json["gameLibraryLoc"]
+        this.autoUpdateGames = json["autoUpdateGames"]
+        this.autoUpdateLauncher = json["autoUpdateLauncher"]
+        this.limitBandwidth = json["limitBandwidth"]
+        this.limitBandwidthNumber = json["limitBandwidthNumber"]
+        
+        this.languageCode = json["languageCode"]
+        this.defaultStartTab = json["defaultStartTab"]
+        this.runAtStartUp = json["runAtStartUp"]
+    }
+
+    write(buf: Crypter): Crypter {
+        buf.writeString(JSON.stringify(this))
+
+        return buf
     }
 
     getGameLibraryLoc() {
@@ -103,8 +122,8 @@ export class ClientSettings {
         return this.languageCode
     }
 
-    setLanguageCode(code: string) {
-        this.languageCode = code
+    setLanguageCode(codeIndex: number) {
+        this.languageCode = codeIndex
         return this
     }
 

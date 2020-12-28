@@ -76,7 +76,43 @@ export class GeneralSettingsTab extends SettingsSubTab {
     }
     
     loadSubTab(): void {
+        let clientSettings = this.getMain().getClientSettings()
 
+        this.getElement("game-lib-loc-input").setAttribute("value", clientSettings["gameLibraryLoc"] ? clientSettings["gameLibraryLoc"] : "unset");
+        this.getElement("game-lib-loc-input").oninput = (ev) => {
+            this.getMain().setClientSettingsField("gameLibraryLoc", (<any>this.getElement("game-lib-loc-input")).value)
+        };
+
+        (<any>this.getElement("checkbox-auto-update-game"))["checked"] = clientSettings["autoUpdateGames"];
+        this.getElement("checkbox-auto-update-game").onchange = (ev) => {
+            this.getMain().setClientSettingsField("autoUpdateGames", (<any>this.getElement("checkbox-auto-update-game"))["checked"])
+        }
+        (<any>this.getElement("checkbox-auto-update-launcher"))["checked"] = clientSettings["autoUpdateLauncher"];
+        this.getElement("checkbox-auto-update-launcher").onchange = (ev) => {
+            this.getMain().setClientSettingsField("autoUpdateLauncher", (<any>this.getElement("checkbox-auto-update-launcher"))["checked"])
+        }
+        (<any>this.getElement("checkbox-limit-bandwidth"))["checked"] = clientSettings["limitBandwidth"];
+        this.getElement("checkbox-limit-bandwidth").onchange = (ev) => {
+            this.getMain().setClientSettingsField("limitBandwidth", (<any>this.getElement("checkbox-limit-bandwidth"))["checked"])
+        }
+        
+        this.getElement("bandwidth-limit-input").setAttribute("value", clientSettings["limitBandwidthNumber"] + " mb/s");
+        this.getElement("bandwidth-limit-input").oninput = (ev) => {
+            this.getMain().setClientSettingsField("limitBandwidthNumber", Number.parseInt((<any>this.getElement("bandwidth-limit-input")).value.replace(" mb/s", "")))
+        };
+
+        (<any>this.getElement("interface-language-selector"))["selectedIndex"] = clientSettings["languageCode"];
+        this.getElement("interface-language-selector").onchange = (ev) => {
+            this.getMain().setClientSettingsField("languageCode", (<any>this.getElement("interface-language-selector"))["selectedIndex"])
+        };
+        (<any>this.getElement("interface-start-selector"))["selectedIndex"] = clientSettings["defaultStartTab"];
+        this.getElement("interface-start-selector").onchange = (ev) => {
+            this.getMain().setClientSettingsField("defaultStartTab", (<any>this.getElement("interface-start-selector"))["selectedIndex"])
+        };
+        (<any>this.getElement("checkbox-auto-start"))["checked"] = clientSettings["runAtStartUp"];
+        this.getElement("checkbox-auto-start").onchange = (ev) => {
+            this.getMain().setClientSettingsField("runAtStartUp", (<any>this.getElement("checkbox-auto-start"))["checked"])
+        }
     }
     
     getName() {
@@ -109,11 +145,15 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .child(gameLibLocInput.build())
 
         //CHECKBOX - AutoUpdate Games
+        var checkboxAutoUpdateGame_ = this.HTMLElement("i")
+            .set("class","fas fa-check-circle")
+            .set("id","checkmark-icon")
+
         var checkboxAutoUpdateGame = this.HTMLElement("input")
             .set("type","checkbox")
             .set("class","input_checkbox")
             .set("id","checkbox-auto-update-game")
-        
+
         var autoUpdateGameText = this.HTMLElement("a")
             .set("class","settings-entry")
             .set("id","checkbox-text-auto-update-game")
@@ -123,12 +163,16 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .set("id","setting-auto-update-game")
             .child(autoUpdateGameText.build())
             .child(checkboxAutoUpdateGame.build())
+            .child(checkboxAutoUpdateGame_.build())
 
         //CHECKBOX - AutoUpdate Launcher
         var checkboxAutoUpdateLauncher = this.HTMLElement("input")
             .set("type","checkbox")
             .set("class","input_checkbox")
             .set("id","checkbox-auto-update-launcher")
+        var checkboxAutoUpdateLauncher_ = this.HTMLElement("i")
+            .set("class","fas fa-check-circle")
+            .set("id","checkmark-icon")
         
         var autoUpdateLauncherText = this.HTMLElement("a")
             .set("class","settings-entry")
@@ -139,12 +183,17 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .set("id","setting-auto-update-game")
             .child(autoUpdateLauncherText.build())
             .child(checkboxAutoUpdateLauncher.build())
+            .child(checkboxAutoUpdateLauncher_.build())
         
         //CHECKBOX & INPUTFIELD - limit bandwidth
         var checkboxLimitBandwidth = this.HTMLElement("input")
             .set("type","checkbox")
             .set("class","input_checkbox")
             .set("id","checkbox-limit-bandwidth")
+
+        var checkboxLimitBandwidth_ = this.HTMLElement("i")
+            .set("class","fas fa-check-circle")
+            .set("id","checkmark-icon")
         
         var limitBandwidthText = this.HTMLElement("a")
             .set("class","settings-entry")
@@ -162,6 +211,7 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .set("id","setting-limit-bandwidth")
             .child(limitBandwidthText.build()) 
             .child(checkboxLimitBandwidth.build())
+            .child(checkboxLimitBandwidth_.build())
             .child(limitBandwidthInput.build()) 
 
         //SETTING PANEL - STORAGE
@@ -174,8 +224,6 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .child(settingAutoUpdateLauncher.build())
             .child(settingLimitBandwidth.build())
 
-        
-        
         // Set the tab-content
         this.getElement("tab-content").appendChild(settingPanelStorage.build())
 
@@ -184,18 +232,20 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .set("class","setting_panel_title")
             .setInner("Interface Settings")
         
+        //SELECTOR - Language
         var languageText = this.HTMLElement("a")
             .set("class","settings-entry")
             .set("id", "interface-language-text")
             .setInner("Language")
         
         var languageSelector = this.HTMLElement("select")
+            .set("class","input_selector")
             .set("name", "language")
             .set("id", "interface-language-selector")
             .child(
                 this.HTMLElement("option")
                 .set("selected", "true")
-                .setInner("-").build()
+                .setInner("en_us").build()
             )
 
         var languageDiv = this.HTMLElement("div")
@@ -205,13 +255,21 @@ export class GeneralSettingsTab extends SettingsSubTab {
 
         
         var startTabText = this.HTMLElement("a")
-        .set("class","settings-entry")
-        .set("id", "interface-start-text")
-        .setInner("Default start tab")
+            .set("class","settings-entry")
+            .set("id", "interface-start-text")
+            .setInner("Default start tab")
         
         var startTabSelector = this.HTMLElement("select")
+            .set("class","input_selector")
             .set("name", "start-tab")
             .set("id", "interface-start-selector")
+        
+        for (let i in this.getMain().getTabArray()) {
+            let tabOption = this.HTMLElement("option")
+            tabOption.setInner(this.getMain().getTabArray()[i].getName().toUpperCase())
+
+            startTabSelector.child(tabOption.build())
+        }
 
         var startTabDiv = this.HTMLElement("div")
             .set("id", "interface-start")
@@ -224,6 +282,10 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .set("type","checkbox")
             .set("class","input_checkbox")
             .set("id","checkbox-auto-start")
+
+        var checkboxAutoStart_ = this.HTMLElement("i")
+            .set("class","fas fa-check-circle")
+            .set("id","checkmark-icon")
         
         var autoStartText = this.HTMLElement("a")
             .set("class","settings-entry")
@@ -234,6 +296,7 @@ export class GeneralSettingsTab extends SettingsSubTab {
             .set("id","setting-auto-start")
             .child(autoStartText.build())
             .child(checkboxAutoStart.build())
+            .child(checkboxAutoStart_.build())
 
         //SETTING PANEL - Interface
         var settingsPanelInterface = this.HTMLElement("div")

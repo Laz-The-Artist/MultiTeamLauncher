@@ -1,7 +1,7 @@
 import {app, BrowserWindow, ipcMain} from 'electron'
 
 import * as path from 'path'
-import { DataStorage } from './datastorage';
+import { ClientSettings, DataStorage } from './datastorage';
 import { FirebaseHandler } from './firebase';
 import {Crypter} from './crypter'
 
@@ -20,100 +20,113 @@ var firebaseConfig = {
 async function createWindow() {
   const firebaseClient = new FirebaseHandler(firebaseConfig)
   const dataStorage = new DataStorage(app.getPath("userData"));
+  const clientSettings = new ClientSettings()
 
 
-    // Create the browser window.
-    const mainWindow = new BrowserWindow({
-      height: 737,
-      width: 1312,
-      icon: path.join(__dirname, '../res/img/', 'mt_launcher_icon.png'),
-      resizable: false,
-      //frame: false,
-      webPreferences: {
-        nodeIntegration: true,
-        enableRemoteModule: true,
-        // preload: path.join(__dirname, "renderer/login.js")
-      }
-    });
-
-    mainWindow.loadFile(path.join(__dirname, "../loading.html"))
-
-    var existingCreditentials = {
-      email: "",
-      password: ""
+  // Create the browser window.
+  const mainWindow = new BrowserWindow({
+    height: 737,
+    width: 1312,
+    icon: path.join(__dirname, '../res/img/', 'mt_launcher_icon.png'),
+    resizable: false,
+    //frame: false,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      // preload: path.join(__dirname, "renderer/login.js")
     }
+  });
 
-    if (await dataStorage.fileExist("creditentials.data")) {
-      var uncrypter = new Crypter(await dataStorage.readFile("creditentials.data"))
-      existingCreditentials.email = uncrypter.readString()
-      existingCreditentials.password = uncrypter.readString()
-    }
+  await mainWindow.loadFile(path.join(__dirname, "../loading.html"))
+
+  if (await dataStorage.fileExist("client_settings.json")) {
+    var uncrypter = new Crypter(await dataStorage.readFile("client_settings.json"))
+    clientSettings.read(uncrypter)
+  } else {
+    await dataStorage.writeFile("client_settings.json", clientSettings.write(new Crypter()).getBuffer())
+  }
+
+  var existingCreditentials = {
+    email: "",
+    password: ""
+  }
+
+  if (await dataStorage.fileExist("creditentials.data")) {
+    var uncrypter = new Crypter(await dataStorage.readFile("creditentials.data"))
+    existingCreditentials.email = uncrypter.readString()
+    existingCreditentials.password = uncrypter.readString()
+  }
 
 
-  
-    // and load the index.html of the app.
-    if (existingCreditentials.email != "" && existingCreditentials.password != "" && (await tryLogin(0, existingCreditentials)).pass) {
-      await login(mainWindow, existingCreditentials.email, existingCreditentials.password)
+
+  // and load the index.html of the app.
+  if (existingCreditentials.email != "" && existingCreditentials.password != "" && (await tryLogin(0, existingCreditentials)).pass) {
+    await login(mainWindow, existingCreditentials.email, existingCreditentials.password, clientSettings)
+  } else {
+    await mainWindow.loadFile(path.join(__dirname, "../login.html"));
+  }
+  // Open the DevTools.
+  await mainWindow.webContents.openDevTools();
+
+  ipcMain.on('login', async (even, data) => {
+    var result = await tryLogin(data["operation"], data)
+    if (result.pass) {
+      await login(mainWindow, data["email"], data["password"], clientSettings)
     } else {
-      mainWindow.loadFile(path.join(__dirname, "../login.html"));
+      ipcMain.emit("login-error", {
+        operation: data["operation"],
+        error: result.reason
+      })
     }
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools();
-
-    ipcMain.on('login', async (even, data) => {
-      var result = await tryLogin(data["operation"], data)
-      if (result.pass) {
-        await login(mainWindow, data["email"], data["password"])
-      } else {
-        ipcMain.emit("login-error", {
-          operation: data["operation"],
-          error: result.reason
-        })
-      }
-    })
-    .on("friend-list", async (even, data) => {
-      var obj = {
-        friends: await firebaseClient.getFriendList()
-      }
-      even.reply('friend-list', obj)
-    })
-    .on("get-username", async (even, data) => {
-      even.reply("get-username", {username: await firebaseClient.getUsername(), status: firebaseClient.getStatus()})
-    })
-
-    async function login(mainWindow: BrowserWindow, email: string, password: string) {
-      mainWindow.loadFile(path.join(__dirname, "../main.html"))
-
-      var crypter = new Crypter()
-      crypter.writeString(email)
-      crypter.writeString(password)
-
-      await dataStorage.writeFile("creditentials.data", crypter.getBuffer())
+  })
+  .on("friend-list", async (even, data) => {
+    var obj = {
+      friends: await firebaseClient.getFriendList()
     }
+    even.reply('friend-list', obj)
+  })
+  .on("get-username", async (even, data) => {
+    even.reply("get-username", {username: await firebaseClient.getUsername(), status: firebaseClient.getStatus()})
+  }).on("client-settings", (even, data) => {
+    even.reply("client-settings", {settings:JSON.stringify(clientSettings)})
+  }).on("client-settings-update", async (even, data) => {
+    clientSettings.fromJson(JSON.parse(data["settings"]))
+    await dataStorage.writeFile("client_settings.json", clientSettings.write(new Crypter()).getBuffer())
+  })
 
-    async function tryLogin(action: number, data: any) {
-      var er = {}
-      if (action == 1) {
-        try {
-          await firebaseClient.createAccount(data["username"], data["email"], data["password"])
-          return {pass:true}
-        } catch (e) {
-          er = e
-        }
-      } else {
-        try {
-          await firebaseClient.login(data["email"], data["password"])
-          return {pass:true}
-        } catch (e) {
-          er = e
-        }
+  async function login(mainWindow: BrowserWindow, email: string, password: string, clientSettings: ClientSettings) {
+    mainWindow.loadFile(path.join(__dirname, "../main.html"))
+
+    var crypter = new Crypter()
+    crypter.writeString(email)
+    crypter.writeString(password)
+
+    await dataStorage.writeFile("creditentials.data", crypter.getBuffer())
+  }
+
+  async function tryLogin(action: number, data: any) {
+    var er = {}
+    if (action == 1) {
+      try {
+        await firebaseClient.createAccount(data["username"], data["email"], data["password"])
+        return {pass:true}
+      } catch (e) {
+        er = e
       }
-      return {pass:false, reason: er}
+    } else {
+      try {
+        await firebaseClient.login(data["email"], data["password"])
+        return {pass:true}
+      } catch (e) {
+        er = e
+      }
     }
+    return {pass:false, reason: er}
+  }
 
-    app.on("before-quit", () => {
-      firebaseClient.setUserInfo("status", "offline")
-    })
+  app.on("before-quit", () => {
+    firebaseClient.setUserInfo("status", "offline")
+  })
 }
   
 // This method will be called when Electron has finished
