@@ -319,7 +319,7 @@ export class GeneralSettingsTab extends SettingsSubTab {
 
         //SETTING PANEL - Interface
         var settingsPanelInterface = this.HTMLElement("div")
-            .set("class", "settings_panel")
+            .set("class", "setting_panel")
             .set("id", "settings-panel-interface")
             .child(interfacePanelTitle.build())
             .child(languageDiv.build())
@@ -357,10 +357,10 @@ export class AccountSettingsTab extends SettingsSubTab {
         //TEXT - Panel Title
         var storagePanelTitle = this.HTMLElement("h1")
             .set("class","setting_panel_title")
-            .setInner("Storage Settings")
+            .setInner("Profile Settings")
 
         
         this.getElement("tab-content").appendChild(storagePanelTitle.build())
-        
+
     }
 }
