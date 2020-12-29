@@ -126,7 +126,7 @@ body {
     transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.2s;
     z-index:11;
-    margin-left: 10px;
+    margin-left: 0px;
     margin-right: 10px;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -631,11 +631,13 @@ body {
 
 .setting_panel_title{
     font-size: 37pt;
-    margin-left: 16px;
+    margin-left: 32px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .settings-entry{
     font-size: 24pt;
-    margin-left: 16px;
+    margin-left: 32px;
     margin-right: 10px;
 }
 
@@ -645,7 +647,7 @@ body {
 
 #chose-path{
     max-height: 29px;
-    margin-top: 37px;
+    margin-top: 0px;
     margin-left: 10px;
     padding: 0px;
     -webkit-appearance: none;
@@ -807,14 +809,6 @@ body {
 
 .account-preview-dropdown{
     display: none;
-    position: fixed;
-    top: 50px;
-    right: 430px;
-    width: fit-content;
-    background-color: #262626;
-    border-radius: 3px;
-    padding: 5px;
-    z-index: 20;
 }
 
 .account-preview-dropdown_showed{
@@ -827,6 +821,7 @@ body {
     border-radius: 3px;
     padding: 5px;
     z-index: 20;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.48);
 }
 
 .account-preview-dropdown-entry{

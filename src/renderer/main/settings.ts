@@ -353,6 +353,14 @@ export class AccountSettingsTab extends SettingsSubTab {
     }
 
     initSubTab() {
+
+        //TEXT - Panel Title
+        var storagePanelTitle = this.HTMLElement("h1")
+            .set("class","setting_panel_title")
+            .setInner("Storage Settings")
+
+        
+        this.getElement("tab-content").appendChild(storagePanelTitle.build())
         
     }
 }
