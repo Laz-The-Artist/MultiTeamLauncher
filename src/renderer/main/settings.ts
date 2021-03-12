@@ -113,7 +113,8 @@ export class GeneralSettingsTab extends SettingsSubTab {
         };
         (<any>this.getElement("interface-start-selector"))["selectedIndex"] = clientSettings["defaultStartTab"];
         this.getElement("interface-start-selector").onchange = (ev) => {
-            this.getMain().setClientSettingsField("defaultStartTab", (<any>this.getElement("interface-start-selector"))["selectedIndex"])
+            const selectedTab = (<any>this.getElement("interface-start-selector"))["selectedIndex"];
+            this.getMain().setClientSettingsField("defaultStartTab", selectedTab);
         };
         (<any>this.getElement("checkbox-auto-start"))["checked"] = clientSettings["runAtStartUp"];
         this.getElement("checkbox-auto-start").onchange = (ev) => {

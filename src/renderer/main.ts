@@ -94,10 +94,11 @@ export class MainWindow {
     }
 
     setTab(tabIndex: number) {
-        if (!tabIndex) {
+        if (tabIndex == undefined || tabIndex == null) {
             tabIndex = 0
             this.setClientSettingsField("defaultStartTab", 0)
         }
+        
         for (let i = 0; i < this.tabs.length; i++) {
             this.getElement("header-" + this.tabs[i].getName()).setAttribute("class", "header_tab")
         }
