@@ -1,0 +1,8 @@
+image:
+  file: Dockerfile
+ports:
+- port: 6080
+tasks:
+- init: >
+    npm install
+  command: npm run run
