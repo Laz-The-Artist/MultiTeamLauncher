@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import { Crypter } from './crypter';
+import { Crypter } from './crypter'
+import * as xdg from '@folder/xdg';
 
 export class DataStorage {
     private dataFolder: string;
@@ -37,7 +38,7 @@ export class DataStorage {
 
 export class ClientSettings {
 
-    private gameLibraryLoc: string
+    private gameLibraryLoc: string = ClientSettings.getDefaultGameLibraryPath();
     private autoUpdateGames: boolean = true
     private autoUpdateLauncher: boolean = true
     private limitBandwidth: boolean = true
@@ -143,5 +144,13 @@ export class ClientSettings {
     setRunAtStartup(bool: boolean) {
         this.runAtStartUp = bool
         return this
+    }
+
+    static getDefaultGameLibraryPath(): string {
+        const user_dirs = xdg.userdirs.expand();
+        const dirs = user_dirs.dirs();
+        const home_dir = xdg.userdirs.home();
+
+        return process.platform == "linux" ? path.join(home_dir, ".multiteam") : path.join(dirs["XDG_DOCUMENTS_DIR"], "MultiTeam")
     }
 }

@@ -79,6 +79,7 @@ body {
     text-align: left;
 	border-radius: 3px;
     color: #E1E1E1;
+    -webkit-app-region:none;
 }
 .inputfield:active{
     -webkit-appearance: none;
@@ -103,6 +104,7 @@ body {
     border-radius: 3px;
     border: none;
     outline: none;
+    -webkit-app-region:none;
 }
 .input_selector:active{
     -webkit-appearance: none;
@@ -130,7 +132,7 @@ body {
     margin-right: 10px;
     margin-top: 0px;
     margin-bottom: 0px;
-
+    -webkit-app-region:none;
 }
 #checkmark-icon{
     pointer-events: none;
@@ -145,6 +147,7 @@ body {
     transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
+    -webkit-app-region:none;
 }
 .input_checkbox:hover + #checkmark-icon{
     cursor: pointer;
@@ -181,6 +184,7 @@ body {
     border-radius: 3px;
 	transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.2s;
+    -webkit-app-region:none;
 }
 .button_regular:hover{
     cursor: pointer;
@@ -200,6 +204,7 @@ body {
     transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.3s;
     font-size:30px;
+    -webkit-app-region:none;
 }
 .button_icon:hover{
     cursor: pointer;
@@ -240,6 +245,7 @@ body {
     margin: auto;
     width: fit-content;
     text-align: center;
+    -webkit-app-region:drag;
 }
 
 .msg-login-error{
@@ -247,6 +253,7 @@ body {
     background-color: #E95F66;
     border-radius: 3px;
     padding: 20px;
+    -webkit-app-region:none;
 }
 
 #sign-up-text{
@@ -330,6 +337,7 @@ body {
 
 	transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.2s;
+    -webkit-app-region:drag;
     
 }
 .sidebar_hidden{
@@ -359,6 +367,7 @@ body {
 
 	transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.2s;
+    -webkit-app-region:drag;
 }
 
 .sidebar_item{
@@ -378,6 +387,7 @@ body {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.38);
 	transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.2s;
+    -webkit-app-region:none;
 }
 .sidebar_item:hover{
     cursor: pointer;
@@ -396,6 +406,7 @@ body {
     max-width: 70px;
     max-height: 70px;
     vertical-align: middle;
+    -webkit-app-region:none;
 }
 
 .sidebar_item_na{
@@ -415,6 +426,7 @@ body {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.38);
 	transition: cubic-bezier(.88,.1,.23,.82);
     transition-duration: 0.2s;
+    -webkit-app-region:none;
 }
 .sidebar_item_icon_na{
     -webkit-filter: grayscale(100%);
@@ -426,6 +438,7 @@ body {
     max-width: 70px;
     max-height: 70px;
     vertical-align: middle;
+    -webkit-app-region:none;
 }
 
 #sidebar_item_badge {
@@ -435,6 +448,7 @@ body {
     font-size:30px;
     text-shadow: 0px 5px 8px rgba(0, 0, 0, 0.48);
     z-index:10;
+    -webkit-app-region:none;
 }
 
   /* CONTENT */
@@ -671,6 +685,42 @@ body {
 .header{
     margin-bottom:0px;
     height:75px;
+    -webkit-app-region:drag;
+}
+
+.window_manager_buttons{
+    cursor: pointer;
+    background-color: #141414;
+    color: #E1E1E1;
+    display: inline-block;
+    font-size: 24pt;
+    padding:2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 15px;
+    margin-bottom: 0px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    -webkit-app-region:none;
+}
+
+.window_manager_buttons:hover{
+    background-color: #E1E1E1;
+    color: #141414;
+}
+
+#window-minimize{
+
+}
+
+#window-close:hover{
+    background-color: #E2114A;
+}
+
+#window-debug {
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
 .header_tab{
@@ -686,6 +736,7 @@ body {
     margin-bottom: 0px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+    -webkit-app-region:none;
 }
 .header_tab:hover{
     cursor: pointer;
@@ -704,6 +755,7 @@ body {
     margin-bottom: 0px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+    -webkit-app-region:none;
 }
 .header_tab_selected:hover{
     cursor: pointer;

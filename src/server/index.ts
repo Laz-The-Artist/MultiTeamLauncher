@@ -29,7 +29,7 @@ async function createWindow() {
     width: 1312,
     icon: path.join(__dirname, '../res/img/', 'mt_launcher_icon.png'),
     resizable: false,
-    //frame: false,
+    frame: false,
     webPreferences: {
       nodeIntegration: true,
       enableRemoteModule: true,
