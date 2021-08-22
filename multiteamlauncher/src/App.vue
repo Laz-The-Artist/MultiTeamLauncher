@@ -1,7 +1,9 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">Games</router-link> |
+    <router-link to="/mods">Mods</router-link> |
+    <router-link to="/social">Social</router-link> |
+    <router-link to="/settings">Settings</router-link>
   </div>
   <router-view/>
 </template>
