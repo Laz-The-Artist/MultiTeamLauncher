@@ -3,27 +3,41 @@ import Games from '../views/Games.vue'
 import Mods from '../views/Mods.vue'
 import Social from '../views/Social.vue'
 import Settings from '../views/Settings.vue'
+import GameBar from "../components/games/nav/GameNav.vue"
+import GameBarEmpty from "../components/GameNavEmpty.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Games',
-    component: Games
+    components: {
+      default: Games,
+      navBar: GameBar
+    }
   },
   {
     path: '/mods',
     name: 'Mods',
-    component: Mods
+    components: {
+      default: Mods,
+      navBar: GameBar
+    }
   },
   {
     path: '/social',
     name: 'Social',
-    component: Social
+    components: {
+      default: Social,
+      navBar: GameBarEmpty
+    }
   },
   {
     path: '/settings',
     name: 'Settings',
-    component: Settings
+    components: {
+      default: Settings,
+      navBar: GameBarEmpty
+    }
   },
   // {
   //   path: '/about',

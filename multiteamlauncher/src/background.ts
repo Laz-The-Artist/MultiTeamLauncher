@@ -13,8 +13,9 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    height: 737,
+    width: 1312,
+    resizable: false,
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone

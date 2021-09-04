@@ -8,9 +8,9 @@
         <div class="sidebar_item" 
         v-for="game in gameList"
         v-bind:key="game.index"
-        v-bind:style="backgroundColor=game.bgColor"
+        v-bind:style="{ backgroundColor: game.color}"
         >
-            <img v-bind:src="game.iconPath" alt="sidebar_item_icon" class="sidebar_item_icon" draggable="false">
+            <img v-bind:src="game.iconURL" alt="sidebar_item_icon" class="sidebar_item_icon" draggable="false">
         <i class="fas fa-arrow-alt-circle-down" id="sidebar_item_badge" style="color=#4CBE6A"></i>
         </div>
     </div>
