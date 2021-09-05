@@ -4,8 +4,8 @@
     <div class="HeadSpacer"></div>
     <router-link to="/" tag="div" class="header_tab">Games</router-link>
     <router-link to="/mods" tag="div" class="header_tab">Mods</router-link>
-    <router-link to="/social" tag="div" class="header_tab">Social</router-link>
-    <router-link to="/settings" tag="div" class="header_tab">Settings</router-link>
+    <router-link to="/social" id="social" tag="div" class="header_tab">Social</router-link>
+    <router-link to="/settings" id="settings" tag="div" class="header_tab">Settings</router-link>
 
     <div id="account-preview">
         <div class="account_preview_img"><img src="res/img/game_icon_jasg.png" alt="profile-picture" id="account-preview-pfp"></div>
@@ -37,16 +37,14 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 import { defineComponent } from 'vue'
 
 export default defineComponent({
     name: "App",
     components: {
     },
-    computed: {
-        ...mapGetters(["gameList"])
-    }
+    computed: {}
 })
 </script>
 
