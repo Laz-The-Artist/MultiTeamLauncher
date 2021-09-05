@@ -742,7 +742,11 @@ body {
     cursor: pointer;
 }
 
-.header_tab_selected{
+#nav a {
+    text-decoration: none;
+}
+  
+#nav a.router-link-exact-active {
     cursor: pointer;
     background-color: #E1E1E1;
     color: #141414;
@@ -757,7 +761,8 @@ body {
     border-top-right-radius: 3px;
     -webkit-app-region:none;
 }
-.header_tab_selected:hover{
+  
+#nav a.router-link-exact-active:hover {
     cursor: pointer;
 }
 
