@@ -2,6 +2,18 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    settings: {
+      general: {
+        gameLibraryLoc: "",
+        autoUpdateGames: true,
+        autoUpdateLauncher: true,
+        limitBandwidth: true,
+        limitBandwidthNumber: 20,
+        languageCode: 0,
+        defaultStartTab: 0,
+        runAtStartUp: true
+      }
+    },
     friendList: [
       {
         username: "Laz",
@@ -60,7 +72,14 @@ export default createStore({
   },
   mutations: {
     setSelectedGame: (state, index: number) => {
-      state.selectedGame = index
+      state.selectedGame = index;
+      return;
+    },
+    setGeneralSetting: (state, param: {name: string, value: unknown}) => {
+      let settings: any = state.settings.general;
+      settings[param.name] = param.value;
+      state.settings.general = settings;
+      return;
     }
   },
   actions: {

@@ -1,14 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Games from '../views/Games.vue'
 import Mods from '../views/Mods.vue'
-import Social from '../views/Social.vue'
-import Settings from '../views/Settings.vue'
 import GameBar from "../components/games/nav/GameNav.vue"
 import GameBarEmpty from "../components/GameNavEmpty.vue"
 import HeaderSubSocial from "../components/social/HeaderSub.vue"
 import FriendList from "../components/social/FriendList.vue"
 import GroupList from "../components/social/GroupList.vue"
 import HeaderSubSettings from "../components/settings/HeaderSub.vue"
+import GeneralSettings from '../components/settings/GeneralSettings.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -49,7 +48,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/settings',
     name: 'Settings',
     components: {
-      default: Settings,
+      default: GeneralSettings,
       navBar: GameBarEmpty,
       headerSub: HeaderSubSettings
     }
@@ -58,7 +57,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/settings/account',
     name: 'Settings-Account',
     components: {
-      default: Settings,
+      default: GeneralSettings,
       navBar: GameBarEmpty,
       headerSub: HeaderSubSettings
     }
