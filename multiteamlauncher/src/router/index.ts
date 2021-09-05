@@ -6,6 +6,8 @@ import Settings from '../views/Settings.vue'
 import GameBar from "../components/games/nav/GameNav.vue"
 import GameBarEmpty from "../components/GameNavEmpty.vue"
 import HeaderSubSocial from "../components/social/HeaderSub.vue"
+import FriendList from "../components/social/FriendList.vue"
+import GroupList from "../components/social/GroupList.vue"
 import HeaderSubSettings from "../components/settings/HeaderSub.vue"
 
 const routes: Array<RouteRecordRaw> = [
@@ -29,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/social',
     name: 'Social',
     components: {
-      default: Social,
+      default: FriendList,
       navBar: GameBarEmpty,
       headerSub: HeaderSubSocial
     }
@@ -38,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/social/groups',
     name: 'Social-Groups',
     components: {
-      default: Social,
+      default: GroupList,
       navBar: GameBarEmpty,
       headerSub: HeaderSubSocial
     }

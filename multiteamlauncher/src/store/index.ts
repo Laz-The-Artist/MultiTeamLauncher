@@ -2,6 +2,16 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    friendList: [
+      {
+        username: "Laz",
+        status: "offline"
+      },
+      {
+        username: "Cat Core",
+        status: "online"
+      }
+    ],
     selectedGame: 0,
     gameList: [
       {
@@ -63,6 +73,9 @@ export default createStore({
     },
     selectedGame: state => {
       return state.selectedGame
+    },
+    friendList: state => {
+      return state.friendList
     }
   }
 })

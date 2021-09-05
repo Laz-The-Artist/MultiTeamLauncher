@@ -1,7 +1,5 @@
 <template>
-    <div class="social">
-
-    </div>
+    
 </template>
 
 <script lang="ts">
