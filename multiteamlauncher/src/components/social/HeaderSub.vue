@@ -2,8 +2,8 @@
     <div class="button_icon" id="add-friend">
         <i class="fas fa-plus-circle" id="ico-addFriend"></i>
     </div>
-    <div class="header_tab_sub_selected" id="sub-header-friends">Friends</div>
-    <div class="header_tab_sub" id="sub-header-groups">Groups</div>
+    <router-link to="/social" class="header_tab_sub" id="sub-header-friends">Friends</router-link>
+    <router-link to="/social/groups" class="header_tab_sub" id="sub-header-groups">Groups</router-link>
 </template>
 
 <script lang="ts">

@@ -35,8 +35,26 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/social/groups',
+    name: 'Social-Groups',
+    components: {
+      default: Social,
+      navBar: GameBarEmpty,
+      headerSub: HeaderSubSocial
+    }
+  },
+  {
     path: '/settings',
     name: 'Settings',
+    components: {
+      default: Settings,
+      navBar: GameBarEmpty,
+      headerSub: HeaderSubSettings
+    }
+  },
+  {
+    path: '/settings/account',
+    name: 'Settings-Account',
     components: {
       default: Settings,
       navBar: GameBarEmpty,
