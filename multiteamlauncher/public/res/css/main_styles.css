@@ -770,7 +770,7 @@ body {
     cursor: pointer;
     background-color: #141414;
     color: #E1E1E1;
-    display: none;
+    display: inline-block;
     font-size: 24pt;
     padding:2px;
     padding-left: 10px;

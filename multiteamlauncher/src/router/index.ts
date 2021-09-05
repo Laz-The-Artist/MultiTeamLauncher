@@ -5,6 +5,8 @@ import Social from '../views/Social.vue'
 import Settings from '../views/Settings.vue'
 import GameBar from "../components/games/nav/GameNav.vue"
 import GameBarEmpty from "../components/GameNavEmpty.vue"
+import HeaderSubSocial from "../components/social/HeaderSub.vue"
+import HeaderSubSettings from "../components/settings/HeaderSub.vue"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,7 +30,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Social',
     components: {
       default: Social,
-      navBar: GameBarEmpty
+      navBar: GameBarEmpty,
+      headerSub: HeaderSubSocial
     }
   },
   {
@@ -36,7 +39,8 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Settings',
     components: {
       default: Settings,
-      navBar: GameBarEmpty
+      navBar: GameBarEmpty,
+      headerSub: HeaderSubSettings
     }
   },
   // {

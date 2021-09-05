@@ -29,6 +29,9 @@
     </div>
 
     <hr class="decor_line" style="width:auto;">
+    <a class="header-sub">
+      <router-view name="headerSub"></router-view>
+    </a>
   </div>
   <router-view/>
 </template>
