@@ -9,10 +9,10 @@
                 <div class="pfp">
                     <i class="fas fa-user"></i>
                 </div>
-                <h4 id="friend-user-status">{{ friend.status }}</h4>
+                <h4 id="friend-user-status">{{ $t('status_' + friend.status) }}</h4>
                 <h1 id="friend-user-name">{{ friend.username }}</h1>
                 <div class="message_box">
-                    <input type="text" id="friend-msg-output" placeholder="Message">
+                    <input type="text" id="friend-msg-output" v-bind="$ta('message')">
                     <div class="button_icon" id="sent-btn">
                         <i id="ico-send" class="fas fa-paper-plane"></i>
                     </div>

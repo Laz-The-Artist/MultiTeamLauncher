@@ -20,3 +20,7 @@ status_do-not-disturb = Do Not Disturb
 
 account_my-account = My Account
 account_log-out = Log Out
+
+
+message = 
+    .placeholder = Message

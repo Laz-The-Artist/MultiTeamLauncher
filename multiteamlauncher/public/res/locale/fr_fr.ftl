@@ -1,0 +1,16 @@
+account_log-out = Se déconnecter
+account_my-account = Mon compte
+status_afk = AFK
+status_do-not-disturb = Ne pas déranger
+status_offline = Hors ligne
+status_online = En ligne
+tab_games = Jeux
+tab_mods = Mods
+tab_settings = Paramètres
+tab_settings_account = Compte
+tab_settings_general = Général
+tab_social = Social
+tab_social_friends = Amis
+tab_social_groups = Groupes
+message = 
+    .placeholder = Message
