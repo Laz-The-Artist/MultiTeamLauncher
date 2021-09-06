@@ -119,10 +119,10 @@
                 v-bind:selectedIndex="settings.general.defaultStartTab"
                 v-on:change="this.setSetting({name:'defaultStartTab', value: this.getElementById('interface-start-selector')['selectedIndex']})"
                 >
-                    <option selected>Game</option>
-                    <option>Mods</option>
-                    <option>Social</option>
-                    <option>Settings</option>
+                    <option selected>{{ $t('tab_games') }}</option>
+                    <option>{{ $t('tab_mods') }}</option>
+                    <option>{{ $t('tab_social') }}</option>
+                    <option>{{ $t('tab_settings') }}</option>
                 </select>
             </div>
             <div id="setting-auto-start">

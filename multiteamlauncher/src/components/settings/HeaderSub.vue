@@ -1,6 +1,6 @@
 <template>
-    <router-link to="/settings" class="header_tab_sub" id="sub-header-general">General</router-link>
-    <router-link to="/settings/account" class="header_tab_sub" id="sub-header-account">Account</router-link>
+    <router-link to="/settings" class="header_tab_sub" id="sub-header-general">{{ $t('tab_settings_general') }}</router-link>
+    <router-link to="/settings/account" class="header_tab_sub" id="sub-header-account">{{ $t('tab_settings_account') }}</router-link>
 </template>
 
 <script lang="ts">
