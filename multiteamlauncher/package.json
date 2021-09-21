@@ -1,6 +1,13 @@
 {
   "name": "multiteamlauncher",
   "version": "0.1.0",
+  "description": "The official launcher of MultiTeam",
+  "author": {
+    "name": "MultiTeam",
+    "email": "arthur.koalas@free.fr"
+  },
+  "homepage": "https://github.com/Laz-The-Artist/MultiTeamLauncher",
+  "icon": "public/favicon.ico",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
